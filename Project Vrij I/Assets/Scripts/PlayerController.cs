@@ -6,10 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Movement variables")]
     [SerializeField] float moveSpeed;
-    [SerializeField] float runSpeed;
     [SerializeField] float acceleration;
     [SerializeField] float decceleration;
     [SerializeField] float frictionAmount;
+    public float runningMomentum;
+    [SerializeField] float maxRunningMomentum;
 
     [Space] [Header("Jumping Variables")]
     [SerializeField] float jumpForce;
@@ -21,11 +22,13 @@ public class PlayerController : MonoBehaviour
 
     [Space]
     [Header("Wall Climbing Variables")]
+    [SerializeField] float climbSpeed;
+    [SerializeField] float climbAcceleration;
+    [SerializeField] float climbDecceleration;
     public bool climbingMode = false;
     [SerializeField] KeyCode wallAttachInput;
     Collider2D touchedWall;
 
-    bool running = false;
     float xInput;
     float yInput;
     float xMovement;
@@ -67,8 +70,7 @@ public class PlayerController : MonoBehaviour
     {
         // Horizontal X Movement
         float targetSpeedX = 0; // creates targetSpeed variable
-        if (running) { targetSpeedX = xInput * runSpeed; } // checks if running to increase targetSpeed
-        else { targetSpeedX = xInput * moveSpeed; } // if not running, use standard targetSpeed;
+        targetSpeedX = xInput * (moveSpeed + runningMomentum);
         float speedDifX = targetSpeedX - rb.velocity.x; // calculate difference between current and desired velocity
         float accelRateX = (Mathf.Abs(targetSpeedX) > 0.01f) ? acceleration : decceleration; // change acceleration rate depending on situation
         xMovement = Mathf.Pow(Mathf.Abs(speedDifX) * accelRateX, 0.9f) * Mathf.Sign(speedDifX); // adds all this shit to movement variable
@@ -80,19 +82,17 @@ public class PlayerController : MonoBehaviour
     {
         // Horizontal X Movement
         float targetSpeedX = 0; // creates targetSpeed variable
-        if (running) { targetSpeedX = xInput * runSpeed; } // checks if running to increase targetSpeed
-        else { targetSpeedX = xInput * moveSpeed; } // if not running, use standard targetSpeed;
+        targetSpeedX = xInput * (climbSpeed + runningMomentum);
         float speedDifX = targetSpeedX - rb.velocity.x; // calculate difference between current and desired velocity
-        float accelRateX = (Mathf.Abs(targetSpeedX) > 0.01f) ? acceleration : decceleration; // change acceleration rate depending on situation
+        float accelRateX = (Mathf.Abs(targetSpeedX) > 0.01f) ? climbAcceleration : climbDecceleration; // change acceleration rate depending on situation
         xMovement = Mathf.Pow(Mathf.Abs(speedDifX) * accelRateX, 0.9f) * Mathf.Sign(speedDifX); // adds all this shit to movement variable
 
         rb.AddForce(xMovement * Vector2.right); // applies movement variable as force
 
         float targetSpeedY = 0; // creates targetSpeed variable
-        if (running) { targetSpeedY = yInput * runSpeed; } // checks if running to increase targetSpeed
-        else { targetSpeedY = yInput * moveSpeed; } // if not running, use standard targetSpeed;
+        targetSpeedY = yInput * (climbSpeed + runningMomentum);
         float speedDifY = targetSpeedY - rb.velocity.y; // calculate difference between current and desired velocity
-        float accelRateY = (Mathf.Abs(targetSpeedY) > 0.01f) ? acceleration : decceleration; // change acceleration rate depending on situation
+        float accelRateY = (Mathf.Abs(targetSpeedY) > 0.01f) ? climbAcceleration : climbDecceleration; // change acceleration rate depending on situation
         yMovement = Mathf.Pow(Mathf.Abs(speedDifY) * accelRateY, 0.9f) * Mathf.Sign(speedDifY); // adds all this shit to movement variable
 
         rb.AddForce(yMovement * Vector2.up); // applies movement variable as force
@@ -100,13 +100,30 @@ public class PlayerController : MonoBehaviour
 
     void Run()
     {
-        if (Input.GetKey(KeyCode.LeftShift)) 
+        if (Input.GetKey(KeyCode.LeftShift) && xInput != 0 || Input.GetKey(KeyCode.LeftShift) && yInput != 0) // Check if run button is held down + if there's movement input
         { 
-            running = true; 
+            if (!climbingMode && IsGrounded()) // Check if not climbing is touching ground
+            {
+                runningMomentum += Time.deltaTime;
+            }
         }
         else 
         { 
-            running = false; 
+            runningMomentum = 0;
+        }
+
+        if (rb.velocity.x < -0.1f || rb.velocity.x > 0.1f || rb.velocity.y < -0.1f || rb.velocity.y > 0.1f) // Check if player has velocity in any direction
+        {
+
+        }
+        else
+        {
+            runningMomentum = 0;
+        }
+
+        if (runningMomentum >= maxRunningMomentum) // Cap runningMomentum
+        {
+            runningMomentum = maxRunningMomentum;
         }
     }
 
