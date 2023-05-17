@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float frictionAmount;
     public float runningMomentum;
     [SerializeField] float maxRunningMomentum;
+    public float stamina;
+    [SerializeField] float maxStamina;
 
     [Space] [Header("Jumping Variables")]
     [SerializeField] float jumpForce;
@@ -41,6 +43,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         gravityScale = rb.gravityScale;
+        stamina = maxStamina;
     }
 
     void FixedUpdate()
@@ -138,6 +141,7 @@ public class PlayerController : MonoBehaviour
 
                 if (climbingMode)
                 {
+                    stamina -= 3;
                     climbingMode = false;
                 }
             }
@@ -171,7 +175,7 @@ public class PlayerController : MonoBehaviour
 
     void WallClimbing()
     {
-        if (Input.GetKeyDown(wallAttachInput) && IsTouchingWall()) // Check if button is pressed while touching wall
+        if (Input.GetKeyDown(wallAttachInput) && IsTouchingWall() && stamina > 0) // Check if button is pressed while touching wall
         {
             if (!climbingMode)
             {
@@ -195,11 +199,27 @@ public class PlayerController : MonoBehaviour
                 rb.gravityScale = 0;
             }
             transform.parent = touchedWall.transform;
+
+            stamina -= Time.deltaTime / 2;
         }
         else
         {
             rb.gravityScale = gravityScale;
             transform.parent = null;
+            if (IsGrounded())
+            {
+                stamina += Time.deltaTime;
+            }
+        }
+
+        if (stamina >= maxStamina)
+        {
+            stamina = maxStamina;
+        }
+        if (stamina <= 0)
+        {
+            climbingMode = false;
+            stamina = 0;
         }
     }
 

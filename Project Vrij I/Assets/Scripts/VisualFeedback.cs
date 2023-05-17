@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class VisualFeedback : MonoBehaviour
 {
     [SerializeField] GameObject wallDetectedIndicator;
     [SerializeField] GameObject climbingIndicator;
+    [SerializeField] TextMeshPro staminaCounterText;
 
     PlayerController controller;
 
@@ -35,5 +37,7 @@ public class VisualFeedback : MonoBehaviour
         {
             climbingIndicator.SetActive(false);
         }
+
+        staminaCounterText.text = controller.stamina.ToString("F1");
     }
 }
