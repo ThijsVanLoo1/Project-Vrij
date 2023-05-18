@@ -11,8 +11,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float frictionAmount;
     public float runningMomentum;
     [SerializeField] float maxRunningMomentum;
-    public float stamina;
-    [SerializeField] float maxStamina;
 
     [Space] [Header("Jumping Variables")]
     [SerializeField] float jumpForce;
@@ -30,6 +28,14 @@ public class PlayerController : MonoBehaviour
     public bool climbingMode = false;
     [SerializeField] KeyCode wallAttachInput;
     Collider2D touchedWall;
+
+    [Space]
+    [Header("Stamina Variables")]
+    public float stamina;
+    [SerializeField] float maxStamina;
+    [SerializeField] float staminaDrainage;
+    [SerializeField] float staminaRestoration;
+
 
     float xInput;
     float yInput;
@@ -200,7 +206,7 @@ public class PlayerController : MonoBehaviour
             }
             transform.parent = touchedWall.transform;
 
-            stamina -= Time.deltaTime / 2;
+            stamina -= Time.deltaTime * staminaDrainage;
         }
         else
         {
@@ -208,7 +214,7 @@ public class PlayerController : MonoBehaviour
             transform.parent = null;
             if (IsGrounded())
             {
-                stamina += Time.deltaTime;
+                stamina += Time.deltaTime * staminaRestoration;
             }
         }
 

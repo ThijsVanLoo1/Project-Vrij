@@ -1999,8 +1999,6 @@ MonoBehaviour:
   frictionAmount: 0
   runningMomentum: 0
   maxRunningMomentum: 6
-  stamina: 0
-  maxStamina: 10
   jumpForce: 6
   fallGravityMultiplier: 1.5
   jumpCutMultiplier: 0.5
@@ -2010,6 +2008,10 @@ MonoBehaviour:
   climbDecceleration: 15
   climbingMode: 0
   wallAttachInput: 101
+  stamina: 0
+  maxStamina: 10
+  staminaDrainage: 0.25
+  staminaRestoration: 5
   groundCheck: {fileID: 1584617657}
   groundCheckRadius: 0.2
   groundLayer:
