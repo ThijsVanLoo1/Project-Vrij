@@ -8,6 +8,12 @@ public class VisualFeedback : MonoBehaviour
     [SerializeField] GameObject wallDetectedIndicator;
     [SerializeField] GameObject climbingIndicator;
     [SerializeField] TextMeshPro staminaCounterText;
+    [SerializeField] GameObject stunIndicator;
+
+    [SerializeField] Transform staminaBarFill;
+    [SerializeField] Transform maxStaminaBarFill;
+    Vector2 staminaScale;
+    Vector2 maxStaminaScale;
 
     PlayerController controller;
 
@@ -20,7 +26,7 @@ public class VisualFeedback : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (controller.IsTouchingWall() && !controller.climbingMode)
+        if (controller.IsTouchingWall() && !controller.climbingMode && !controller.isStunned && controller.stamina != 0)
         {
             wallDetectedIndicator.SetActive(true);
         }
@@ -38,6 +44,25 @@ public class VisualFeedback : MonoBehaviour
             climbingIndicator.SetActive(false);
         }
 
+        if (controller.isStunned)
+        {
+            stunIndicator.SetActive(true);
+        }
+        else
+        {
+            stunIndicator.SetActive(false);
+        }
+
         staminaCounterText.text = controller.stamina.ToString("F1");
+        StaminaBar();
+    }
+
+    void StaminaBar()
+    {
+        staminaScale = new Vector2(controller.stamina / 10, staminaBarFill.transform.localScale.y);
+        staminaBarFill.localScale = staminaScale;
+
+        maxStaminaScale = new Vector2(controller.maxStamina / 10, maxStaminaBarFill.transform.localScale.y);
+        maxStaminaBarFill.localScale = maxStaminaScale;
     }
 }

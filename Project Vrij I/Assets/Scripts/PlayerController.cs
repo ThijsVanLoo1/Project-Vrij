@@ -32,9 +32,16 @@ public class PlayerController : MonoBehaviour
     [Space]
     [Header("Stamina Variables")]
     public float stamina;
-    [SerializeField] float maxStamina;
+    public float maxStamina;
+    float staminaCap;
     [SerializeField] float staminaDrainage;
     [SerializeField] float staminaRestoration;
+    [SerializeField] bool instantStaminaRestoration;
+    [SerializeField] float maxStaminaDrainage;
+    [SerializeField] float maxStaminaRestoration;
+    public bool isStunned;
+    [SerializeField] float wallJumpStaminaCost;
+    [SerializeField] float wallJumpMaxStaminaCost;
 
 
     float xInput;
@@ -49,6 +56,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         gravityScale = rb.gravityScale;
+        staminaCap = maxStamina;
         stamina = maxStamina;
     }
 
@@ -147,7 +155,8 @@ public class PlayerController : MonoBehaviour
 
                 if (climbingMode)
                 {
-                    stamina -= 3;
+                    stamina -= wallJumpStaminaCost;
+                    maxStamina -= wallJumpMaxStaminaCost;
                     climbingMode = false;
                 }
             }
@@ -181,7 +190,7 @@ public class PlayerController : MonoBehaviour
 
     void WallClimbing()
     {
-        if (Input.GetKeyDown(wallAttachInput) && IsTouchingWall() && stamina > 0) // Check if button is pressed while touching wall
+        if (Input.GetKeyDown(wallAttachInput) && IsTouchingWall() && stamina > 0 && !isStunned) // Check if: Button pressed, is touching wall, is not stunned
         {
             if (!climbingMode)
             {
@@ -207,6 +216,7 @@ public class PlayerController : MonoBehaviour
             transform.parent = touchedWall.transform;
 
             stamina -= Time.deltaTime * staminaDrainage;
+            maxStamina -= Time.deltaTime * maxStaminaDrainage;
         }
         else
         {
@@ -214,7 +224,15 @@ public class PlayerController : MonoBehaviour
             transform.parent = null;
             if (IsGrounded())
             {
-                stamina += Time.deltaTime * staminaRestoration;
+                if (instantStaminaRestoration)
+                {
+                    stamina = maxStamina;
+                }
+                else
+                {
+                    stamina += Time.deltaTime * staminaRestoration;
+                }
+                maxStamina += Time.deltaTime * maxStaminaRestoration;
             }
         }
 
@@ -227,6 +245,10 @@ public class PlayerController : MonoBehaviour
             climbingMode = false;
             stamina = 0;
         }
+        if (maxStamina >= staminaCap)
+        {
+            maxStamina = staminaCap;
+        }
     }
 
     void Friction()
@@ -237,6 +259,22 @@ public class PlayerController : MonoBehaviour
             amount *= Mathf.Sign(rb.velocity.x);
             rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse); // does stuff idk
         }
+    }
+
+    public void GetHit(float staminaAmount, float stunTime)
+    {
+        if (!isStunned)
+        {
+            isStunned = true;
+            climbingMode = false;
+            stamina -= staminaAmount;
+            StartCoroutine(Stun(stunTime));
+        }
+    }
+    IEnumerator Stun(float stunTime)
+    {
+        yield return new WaitForSeconds(stunTime);
+        isStunned = false;
     }
 
     // Checks if player is grounded

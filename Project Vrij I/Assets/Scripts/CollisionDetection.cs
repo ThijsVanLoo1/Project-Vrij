@@ -18,9 +18,10 @@ public class CollisionDetection : MonoBehaviour
         
     }
 
-    void OnCollisionEnter(Collision other)
+
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        switch (other.gameObject.tag)
+        switch (collision.gameObject.tag)
         {
             case "Obstacle":
                 ObstacleHit();
@@ -32,7 +33,6 @@ public class CollisionDetection : MonoBehaviour
 
     void ObstacleHit()
     {
-        controller.climbingMode = false;
-        controller.stamina -= 3;
+        controller.GetHit(3, 1.5f);
     }
 }
