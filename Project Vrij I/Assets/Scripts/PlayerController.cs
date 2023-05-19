@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float wallJumpStaminaCost;
     [SerializeField] float wallJumpMaxStaminaCost;
 
-
+    public bool attachedToRope;
     float xInput;
     float yInput;
     float xMovement;
@@ -92,7 +92,17 @@ public class PlayerController : MonoBehaviour
         float accelRateX = (Mathf.Abs(targetSpeedX) > 0.01f) ? acceleration : decceleration; // change acceleration rate depending on situation
         xMovement = Mathf.Pow(Mathf.Abs(speedDifX) * accelRateX, 0.9f) * Mathf.Sign(speedDifX); // adds all this shit to movement variable
 
-        rb.AddForce(xMovement * Vector2.right); // applies movement variable as force
+        if (attachedToRope && !IsGrounded())
+        {
+            if (xInput != 0) // Only apply movement when there's actual input
+            {
+                rb.AddForce(xInput * Vector2.right); // applies movement variable as force
+            }
+        }
+        else
+        {
+            rb.AddForce(xMovement * Vector2.right); // applies movement variable as force
+        }
     }
 
     void WallMove()
