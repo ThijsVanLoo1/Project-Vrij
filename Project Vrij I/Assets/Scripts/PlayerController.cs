@@ -92,17 +92,7 @@ public class PlayerController : MonoBehaviour
         float accelRateX = (Mathf.Abs(targetSpeedX) > 0.01f) ? acceleration : decceleration; // change acceleration rate depending on situation
         xMovement = Mathf.Pow(Mathf.Abs(speedDifX) * accelRateX, 0.9f) * Mathf.Sign(speedDifX); // adds all this shit to movement variable
 
-        if (attachedToRope && !IsGrounded())
-        {
-            if (xInput != 0) // Only apply movement when there's actual input
-            {
-                rb.AddForce(xInput * Vector2.right); // applies movement variable as force
-            }
-        }
-        else
-        {
-            rb.AddForce(xMovement * Vector2.right); // applies movement variable as force
-        }
+        rb.AddForce(xMovement * Vector2.right); // applies movement variable as force
     }
 
     void WallMove()
@@ -223,7 +213,8 @@ public class PlayerController : MonoBehaviour
             {
                 rb.gravityScale = 0;
             }
-            transform.parent = touchedWall.transform;
+            //.parent = touchedWall.transform;
+            transform.SetParent(touchedWall.transform);
 
             stamina -= Time.deltaTime * staminaDrainage;
             maxStamina -= Time.deltaTime * maxStaminaDrainage;
@@ -231,7 +222,8 @@ public class PlayerController : MonoBehaviour
         else
         {
             rb.gravityScale = gravityScale;
-            transform.parent = null;
+            //transform.parent = null;
+            transform.SetParent(null);
             if (IsGrounded())
             {
                 if (instantStaminaRestoration)
