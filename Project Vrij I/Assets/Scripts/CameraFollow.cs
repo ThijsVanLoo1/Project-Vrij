@@ -14,6 +14,7 @@ public class CameraFollow : MonoBehaviour
     public bool zoomedOut;
 
     Camera thisCamera;
+    PlayerController controller;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,8 @@ public class CameraFollow : MonoBehaviour
         thisCamera = GetComponent<Camera>();
 ;
         standardSize = thisCamera.orthographicSize;
+
+        controller = player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -35,6 +38,7 @@ public class CameraFollow : MonoBehaviour
 
         //CameraScroll();
         Zoom();
+        LockOrUnlockMovement();
     }
 
     void CameraScroll()
@@ -50,11 +54,16 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
+    public void ZoomToggle()
+    {
+        zoomedOut = !zoomedOut;
+    }
+
     void Zoom()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            zoomedOut = !zoomedOut;
+            ZoomToggle();
         }
 
         if (zoomedOut)
@@ -72,6 +81,18 @@ public class CameraFollow : MonoBehaviour
             {
                 thisCamera.orthographicSize = standardSize;
             }
+        }
+    }
+
+    void LockOrUnlockMovement()
+    {
+        if (zoomedOut)
+        {
+            controller.canInputMovement = false;
+        }
+        else
+        {
+            controller.canInputMovement = true;
         }
     }
 }

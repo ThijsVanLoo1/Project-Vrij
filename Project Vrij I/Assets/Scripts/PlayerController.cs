@@ -10,7 +10,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float decceleration;
     [SerializeField] float frictionAmount;
     public float runningMomentum;
+    [SerializeField] float runStartSpeed;
     [SerializeField] float maxRunningMomentum;
+    [SerializeField] float runningAcceleration;
 
     [Space] [Header("Jumping Variables")]
     [SerializeField] float jumpForce;
@@ -42,10 +44,16 @@ public class PlayerController : MonoBehaviour
     public bool isStunned;
     [SerializeField] float wallJumpStaminaCost;
     [SerializeField] float wallJumpMaxStaminaCost;
-    public float staminaDrainageMultiplier = 1;
 
+    [Space]
+    [Header("Wall Type Variables")]
+    public float staminaDrainageMultiplier = 1;
+    public float climbingSpeedMultiplierX = 1;
+    public float climbingSpeedMultiplierY = 1;
     public bool canClimbVertically = true;
+
     public bool attachedToRope;
+    public bool canInputMovement = true;
     float xInput;
     float yInput;
     float xMovement;
@@ -53,13 +61,18 @@ public class PlayerController : MonoBehaviour
     float gravityScale;
 
     Rigidbody2D rb;
+    Glider glider;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        glider = GetComponent<Glider>();
         gravityScale = rb.gravityScale;
         staminaCap = maxStamina;
         stamina = maxStamina;
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void FixedUpdate()
@@ -76,19 +89,23 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        xInput = Input.GetAxisRaw("Horizontal");
-        if (canClimbVertically)
+        if (canInputMovement)
         {
-            yInput = Input.GetAxisRaw("Vertical");
+            xInput = Input.GetAxisRaw("Horizontal");
+            if (canClimbVertically)
+            {
+                yInput = Input.GetAxisRaw("Vertical");
+            }
+
+            Run();
+            Jump();
+            WallClimbing();
         }
         else
         {
+            xInput = 0;
             yInput = 0;
         }
-
-        Run();
-        Jump();
-        WallClimbing();
         Friction(); // Prevents player from slipping off edges
     }
 
@@ -108,7 +125,7 @@ public class PlayerController : MonoBehaviour
     {
         // Horizontal X Movement
         float targetSpeedX = 0; // creates targetSpeed variable
-        targetSpeedX = xInput * (climbSpeed + runningMomentum);
+        targetSpeedX = xInput * ((climbSpeed + runningMomentum) * climbingSpeedMultiplierX);
         float speedDifX = targetSpeedX - rb.velocity.x; // calculate difference between current and desired velocity
         float accelRateX = (Mathf.Abs(targetSpeedX) > 0.01f) ? climbAcceleration : climbDecceleration; // change acceleration rate depending on situation
         xMovement = Mathf.Pow(Mathf.Abs(speedDifX) * accelRateX, 0.9f) * Mathf.Sign(speedDifX); // adds all this shit to movement variable
@@ -117,7 +134,7 @@ public class PlayerController : MonoBehaviour
 
 
         float targetSpeedY = 0; // creates targetSpeed variable
-        targetSpeedY = yInput * (climbSpeed + runningMomentum);
+        targetSpeedY = yInput * ((climbSpeed + runningMomentum) * climbingSpeedMultiplierY);
         float speedDifY = targetSpeedY - rb.velocity.y; // calculate difference between current and desired velocity
         float accelRateY = (Mathf.Abs(targetSpeedY) > 0.01f) ? climbAcceleration : climbDecceleration; // change acceleration rate depending on situation
         yMovement = Mathf.Pow(Mathf.Abs(speedDifY) * accelRateY, 0.9f) * Mathf.Sign(speedDifY); // adds all this shit to movement variable
@@ -128,19 +145,26 @@ public class PlayerController : MonoBehaviour
 
     void Run()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && xInput != 0 || Input.GetKey(KeyCode.LeftShift) && yInput != 0)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && xInput != 0 || Input.GetKey(KeyCode.LeftShift) && yInput != 0) // Check for the moment the run button is pressed + if there's movement input
         {
-            runningMomentum = 1;
+            if (!climbingMode && IsGrounded()) // Check if not climbing is touching ground
+            {
+                runningMomentum = runStartSpeed;
+            }
         }
         if (Input.GetKey(KeyCode.LeftShift) && xInput != 0 || Input.GetKey(KeyCode.LeftShift) && yInput != 0) // Check if run button is held down + if there's movement input
         { 
             if (!climbingMode && IsGrounded()) // Check if not climbing is touching ground
             {
-                runningMomentum += Time.deltaTime;
+                runningMomentum += Time.deltaTime * runningAcceleration;
             }
         }
         else 
         { 
+            //runningMomentum = 0;
+        }
+        if ((!Input.GetKey(KeyCode.LeftShift) && IsGrounded()) || xInput == 0)
+        {
             runningMomentum = 0;
         }
 
@@ -209,7 +233,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!climbingMode)
             {
-                rb.velocity = Vector2.zero;
+                //rb.velocity = Vector2.zero;
             }
             climbingMode = !climbingMode;
         }
@@ -220,15 +244,7 @@ public class PlayerController : MonoBehaviour
 
         if (climbingMode)
         {
-            if (rb.velocity.y < 0)
-            {
-                rb.gravityScale -= Time.deltaTime;
-            }
-            else
-            {
-                rb.gravityScale = 0;
-            }
-            //.parent = touchedWall.transform;
+            rb.gravityScale = 0;
             transform.SetParent(touchedWall.transform);
 
             stamina -= Time.deltaTime * staminaDrainage * staminaDrainageMultiplier;
@@ -236,8 +252,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            rb.gravityScale = gravityScale;
-            //transform.parent = null;
+            if (!glider.glidingMode) { rb.gravityScale = gravityScale; } // When not gliding, reset gravityScale
             transform.SetParent(null);
             if (IsGrounded())
             {
