@@ -21,18 +21,29 @@ public class CollisionDetection : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        switch (collision.gameObject.tag)
+        if (controller.climbingMode)
         {
-            case "Obstacle":
-                ObstacleHit();
-                break;
-            default:
-                break;
+            switch (collision.gameObject.tag)
+            {
+                case "Obstacle":
+                    ObstacleHit();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
     void ObstacleHit()
     {
         controller.GetHit(3, 1.5f);
+    }
+
+    void WallAttributes(float slippingForce, float staminaDrainageMultiplier, bool canClimbVertically)
+    {
+        controller.canClimbVertically = canClimbVertically;
+        Vector2 slippingVector2 = new Vector2(transform.position.x, slippingForce);
+        controller.GetComponent<Rigidbody2D>().AddForce(-slippingVector2 * Time.deltaTime * 100);
+        controller.staminaDrainageMultiplier = staminaDrainageMultiplier;
     }
 }

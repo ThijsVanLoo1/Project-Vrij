@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Obstacle
+  - SlipWall
+  - BasicWall
+  - QualityWall
   layers:
   - Default
   - TransparentFX
