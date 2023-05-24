@@ -42,3 +42,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3037881957
+    locked: 0
+  - name: Walls
+    uniqueID: 423429483
+    locked: 0
+  - name: Entities
+    uniqueID: 3985049479
+    locked: 0
+  - name: Middleground
+    uniqueID: 1410296905
+    locked: 0
+  - name: Foreground
+    uniqueID: 1012399455
+    locked: 0
+  - name: Overlay
+    uniqueID: 3880086479
+    locked: 0
