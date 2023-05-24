@@ -42,7 +42,9 @@ public class PlayerController : MonoBehaviour
     public bool isStunned;
     [SerializeField] float wallJumpStaminaCost;
     [SerializeField] float wallJumpMaxStaminaCost;
+    public float staminaDrainageMultiplier = 1;
 
+    public bool canClimbVertically = true;
     public bool attachedToRope;
     float xInput;
     float yInput;
@@ -75,7 +77,14 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         xInput = Input.GetAxisRaw("Horizontal");
-        yInput = Input.GetAxisRaw("Vertical");
+        if (canClimbVertically)
+        {
+            yInput = Input.GetAxisRaw("Vertical");
+        }
+        else
+        {
+            yInput = 0;
+        }
 
         Run();
         Jump();
@@ -106,6 +115,7 @@ public class PlayerController : MonoBehaviour
 
         rb.AddForce(xMovement * Vector2.right); // applies movement variable as force
 
+
         float targetSpeedY = 0; // creates targetSpeed variable
         targetSpeedY = yInput * (climbSpeed + runningMomentum);
         float speedDifY = targetSpeedY - rb.velocity.y; // calculate difference between current and desired velocity
@@ -113,10 +123,15 @@ public class PlayerController : MonoBehaviour
         yMovement = Mathf.Pow(Mathf.Abs(speedDifY) * accelRateY, 0.9f) * Mathf.Sign(speedDifY); // adds all this shit to movement variable
 
         rb.AddForce(yMovement * Vector2.up); // applies movement variable as force
+
     }
 
     void Run()
     {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && xInput != 0 || Input.GetKey(KeyCode.LeftShift) && yInput != 0)
+        {
+            runningMomentum = 1;
+        }
         if (Input.GetKey(KeyCode.LeftShift) && xInput != 0 || Input.GetKey(KeyCode.LeftShift) && yInput != 0) // Check if run button is held down + if there's movement input
         { 
             if (!climbingMode && IsGrounded()) // Check if not climbing is touching ground
@@ -216,8 +231,8 @@ public class PlayerController : MonoBehaviour
             //.parent = touchedWall.transform;
             transform.SetParent(touchedWall.transform);
 
-            stamina -= Time.deltaTime * staminaDrainage;
-            maxStamina -= Time.deltaTime * maxStaminaDrainage;
+            stamina -= Time.deltaTime * staminaDrainage * staminaDrainageMultiplier;
+            maxStamina -= Time.deltaTime * maxStaminaDrainage * staminaDrainageMultiplier;
         }
         else
         {
