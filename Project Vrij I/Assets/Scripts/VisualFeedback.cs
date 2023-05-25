@@ -9,6 +9,7 @@ public class VisualFeedback : MonoBehaviour
     [SerializeField] GameObject climbingIndicator;
     [SerializeField] TextMeshPro staminaCounterText;
     [SerializeField] GameObject stunIndicator;
+    [SerializeField] GameObject glidingIndicator;
 
     [SerializeField] Transform staminaBarFill;
     [SerializeField] Transform maxStaminaBarFill;
@@ -16,11 +17,13 @@ public class VisualFeedback : MonoBehaviour
     Vector2 maxStaminaScale;
 
     PlayerController controller;
+    Glider glider;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<PlayerController>();
+        glider = GetComponent<Glider>();
     }
 
     // Update is called once per frame
@@ -51,6 +54,15 @@ public class VisualFeedback : MonoBehaviour
         else
         {
             stunIndicator.SetActive(false);
+        }
+
+        if (glider.glidingMode)
+        {
+            glidingIndicator.SetActive(true);
+        }
+        else
+        {
+            glidingIndicator.SetActive(false);
         }
 
         staminaCounterText.text = controller.stamina.ToString("F1");

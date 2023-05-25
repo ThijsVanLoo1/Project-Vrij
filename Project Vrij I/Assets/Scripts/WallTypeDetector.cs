@@ -24,29 +24,37 @@ public class WallTypeDetector : MonoBehaviour
     {
         touchedWall = Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, wallLayer);
 
-        if (controller.climbingMode)
+        if (touchedWall != null && controller.climbingMode)
         {
             if (touchedWall.gameObject.CompareTag("BasicWall"))
             {
-                controller.canClimbVertically = true;
                 controller.staminaDrainageMultiplier = 1;
+                controller.climbingSpeedMultiplierX = 1;
+                controller.climbingSpeedMultiplierY = 1;
             }
             else if (touchedWall.gameObject.CompareTag("SlipWall"))
             {
-                controller.canClimbVertically = false;
-                controller.GetComponent<Rigidbody2D>().AddForce(slippingAmount * Time.deltaTime * 100);
-                controller.staminaDrainageMultiplier = 0;
+                controller.staminaDrainageMultiplier = 1;
+                controller.climbingSpeedMultiplierX = 1f;
+                controller.climbingSpeedMultiplierY = 0;
+                SlipDown(6);
             }
             else if (touchedWall.gameObject.CompareTag("QualityWall"))
             {
-                controller.canClimbVertically = true;
-                controller.staminaDrainageMultiplier = 0.5f;
+                controller.staminaDrainageMultiplier = 0;
+                controller.climbingSpeedMultiplierX = 1.5f;
+                controller.climbingSpeedMultiplierY = 1.5f;
             }
         }
         else
         {
-            controller.canClimbVertically = true;
             controller.staminaDrainageMultiplier = 1;
         }
+    }
+
+    void SlipDown(float slippingForce)
+    {
+        Vector2 slippingDirection = new Vector2(0, -slippingForce);
+        controller.GetComponent<Rigidbody2D>().AddForce(slippingDirection * Time.deltaTime * 100);
     }
 }
