@@ -2105,7 +2105,7 @@ Transform:
   - {fileID: 582864649}
   - {fileID: 1001788083}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &324561289 stripped
 GameObject:
@@ -8024,7 +8024,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3245552195289733796, guid: 6118352a3c6b5cd4bac2c3aa07c8416e, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3245552195289733796, guid: 6118352a3c6b5cd4bac2c3aa07c8416e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9121,7 +9121,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3245552195289733796, guid: 6118352a3c6b5cd4bac2c3aa07c8416e, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3245552195289733796, guid: 6118352a3c6b5cd4bac2c3aa07c8416e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9976,7 +9976,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3245552195289733796, guid: 6118352a3c6b5cd4bac2c3aa07c8416e, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3245552195289733796, guid: 6118352a3c6b5cd4bac2c3aa07c8416e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10898,7 +10898,7 @@ MonoBehaviour:
   climbingSpeedMultiplierX: 1
   climbingSpeedMultiplierY: 1
   canClimbVertically: 1
-  attachedToRope: 0
+  holdingRope: 0
   canInputMovement: 1
   groundCheck: {fileID: 1584617657}
   groundCheckRadius: 0.2
@@ -10918,7 +10918,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916012270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 30.03, y: 45.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10928,7 +10928,7 @@ Transform:
   - {fileID: 1150122369}
   - {fileID: 1460066678}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1916012275
 MonoBehaviour:
@@ -11006,7 +11006,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d784a86052d803408652b483fde1082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glidingGravity: 0.1
+  glidingGravity: 0.4
+  glidingDrag: 0.5
   glideInput: 324
   glidingMode: 0
 --- !u!1001 &1938942092
@@ -12193,7 +12194,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3245552195289733796, guid: 6118352a3c6b5cd4bac2c3aa07c8416e, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3245552195289733796, guid: 6118352a3c6b5cd4bac2c3aa07c8416e, type: 3}
       propertyPath: m_LocalPosition.x

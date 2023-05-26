@@ -38,7 +38,6 @@ public class CameraFollow : MonoBehaviour
 
         //CameraScroll();
         Zoom();
-        LockOrUnlockMovement();
     }
 
     void CameraScroll()
@@ -57,6 +56,7 @@ public class CameraFollow : MonoBehaviour
     public void ZoomToggle()
     {
         zoomedOut = !zoomedOut;
+        LockOrUnlockMovement();
     }
 
     void Zoom()

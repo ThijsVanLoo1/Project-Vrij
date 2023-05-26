@@ -5,6 +5,7 @@ using UnityEngine;
 public class Glider : MonoBehaviour
 {
     [Range(0, 1)] [SerializeField] float glidingGravity;
+    [SerializeField] float glidingDrag;
     [SerializeField] KeyCode glideInput;
     public bool glidingMode;
 
@@ -42,10 +43,15 @@ public class Glider : MonoBehaviour
             }
             Gliding();
         }
+        else
+        {
+            rb.drag = 0;
+        }
     }
 
     void Gliding()
     {
         rb.gravityScale = glidingGravity;
+        rb.drag = glidingDrag;
     }
 }

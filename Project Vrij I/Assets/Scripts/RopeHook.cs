@@ -18,7 +18,7 @@ public class RopeHook : MonoBehaviour
         joint.connectedBody = playerRb;
         line = GetComponent<LineRenderer>();
 
-        playerController.attachedToRope = true;
+        playerController.holdingRope = true;
     }
 
     // Update is called once per frame

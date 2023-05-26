@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     public float climbingSpeedMultiplierY = 1;
     public bool canClimbVertically = true;
 
-    public bool attachedToRope;
+    public bool holdingRope;
     public bool canInputMovement = true;
     float xInput;
     float yInput;
@@ -118,7 +118,10 @@ public class PlayerController : MonoBehaviour
         float accelRateX = (Mathf.Abs(targetSpeedX) > 0.01f) ? acceleration : decceleration; // change acceleration rate depending on situation
         xMovement = Mathf.Pow(Mathf.Abs(speedDifX) * accelRateX, 0.9f) * Mathf.Sign(speedDifX); // adds all this shit to movement variable
 
-        rb.AddForce(xMovement * Vector2.right); // applies movement variable as force
+        if (!holdingRope)
+        {
+            rb.AddForce(xMovement * Vector2.right); // applies movement variable as force
+        }
     }
 
     void WallMove()
@@ -185,7 +188,7 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        if (lastGroundedTime <= jumpCoyoteTime || climbingMode) // Check if coyote time applies
+        if (lastGroundedTime <= jumpCoyoteTime) // Check if coyote time applies
         {
             if (Input.GetButtonDown("Jump") && lastJumpTime > 0.2f)
             {
@@ -280,6 +283,42 @@ public class PlayerController : MonoBehaviour
         if (maxStamina >= staminaCap)
         {
             maxStamina = staminaCap;
+        }
+
+        // Wall Leaping
+        if (climbingMode) // Check if climbing
+        {
+            if (Input.GetButtonDown("Jump") && xInput != 0 || Input.GetButtonDown("Jump") && yInput != 0) // Check if jump button is pressed + if there's movement input
+            {
+                if (xInput < 0) // Left Input
+                {
+                    stamina -= wallJumpStaminaCost;
+                    maxStamina -= wallJumpMaxStaminaCost;
+                    climbingMode = false;
+                    rb.AddForce(Vector2.left * jumpForce * 2, ForceMode2D.Impulse);
+                }
+                if (xInput > 0) // Right Input
+                {
+                    stamina -= wallJumpStaminaCost;
+                    maxStamina -= wallJumpMaxStaminaCost;
+                    climbingMode = false;
+                    rb.AddForce(Vector2.right * jumpForce * 2, ForceMode2D.Impulse);
+                }
+                if (yInput < 0) // Down Input
+                {
+                    stamina -= wallJumpStaminaCost;
+                    maxStamina -= wallJumpMaxStaminaCost;
+                    climbingMode = false;
+                    rb.AddForce(Vector2.down * jumpForce, ForceMode2D.Impulse);
+                }
+                if (yInput > 0) // Up Input
+                {
+                    stamina -= wallJumpStaminaCost;
+                    maxStamina -= wallJumpMaxStaminaCost;
+                    climbingMode = false;
+                    rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                }
+            }
         }
     }
 
