@@ -118,10 +118,7 @@ public class PlayerController : MonoBehaviour
         float accelRateX = (Mathf.Abs(targetSpeedX) > 0.01f) ? acceleration : decceleration; // change acceleration rate depending on situation
         xMovement = Mathf.Pow(Mathf.Abs(speedDifX) * accelRateX, 0.9f) * Mathf.Sign(speedDifX); // adds all this shit to movement variable
 
-        if (!holdingRope)
-        {
-            rb.AddForce(xMovement * Vector2.right); // applies movement variable as force
-        }
+        rb.AddForce(xMovement * Vector2.right); // applies movement variable as force
     }
 
     void WallMove()
@@ -256,7 +253,14 @@ public class PlayerController : MonoBehaviour
         else
         {
             if (!glider.glidingMode) { rb.gravityScale = gravityScale; } // When not gliding, reset gravityScale
-            transform.SetParent(null);
+            if (transform.parent != null)
+            {
+                if (transform.parent.gameObject.layer == LayerMask.NameToLayer("Wall"))
+                {
+                    transform.SetParent(null);
+                }
+            }
+
             if (IsGrounded())
             {
                 if (instantStaminaRestoration)

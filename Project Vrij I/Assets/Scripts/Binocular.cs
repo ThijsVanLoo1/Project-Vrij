@@ -5,7 +5,6 @@ using UnityEngine;
 public class Binocular : MonoBehaviour
 {
     bool isTouching;
-    bool inUse = false;
     Camera mainCamera;
 
     // Start is called before the first frame update
@@ -21,7 +20,6 @@ public class Binocular : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                inUse = true;
                 mainCamera.gameObject.GetComponent<CameraFollow>().ZoomToggle();
             }
         }

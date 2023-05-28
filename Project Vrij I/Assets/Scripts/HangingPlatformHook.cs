@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class HangingPlatform : MonoBehaviour
+public class HangingPlatformHook : MonoBehaviour
 {
     [SerializeField] GameObject platformPrefab;
     GameObject connectedPlatform;
@@ -30,4 +31,5 @@ public class HangingPlatform : MonoBehaviour
             point.SetPosition(1, transform.position);
         }
     }
+
 }
