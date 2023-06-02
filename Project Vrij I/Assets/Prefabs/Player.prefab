@@ -568,7 +568,7 @@ Transform:
   m_GameObject: {fileID: 4364767924267758144}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.12, y: 0.09, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.6158656, y: 1.6158656, z: 1.6158656}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4364767925086210981}
@@ -599,7 +599,7 @@ MonoBehaviour:
   runStartSpeed: 1
   maxRunningMomentum: 5
   runningAcceleration: 2
-  jumpForce: 6
+  jumpForce: 7
   fallGravityMultiplier: 1.5
   jumpCutMultiplier: 0.5
   jumpCoyoteTime: 0.15
@@ -610,6 +610,7 @@ MonoBehaviour:
   wallAttachInput: 323
   stamina: 0
   maxStamina: 10
+  staminaCap: 0
   staminaDrainage: 0.4
   staminaRestoration: 5
   instantStaminaRestoration: 0
@@ -646,9 +647,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a8dd366ec06f14cbcb06bce7b0b0cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyInput: 113
+  keyInput: 324
   spawnPoint: {fileID: 4364767923677261272}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 128
   hangingPlatformPrefab: {fileID: 4295004402114981291, guid: 8e754d8ba0a84424cab559d50a76397d, type: 3}
+  maxPlatformMaterials: 2
+  buildMode: 0
 --- !u!114 &4364767924267758168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,7 +699,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   glidingGravity: 0.4
   glidingDrag: 0.5
-  glideInput: 324
+  glideInput: 325
   glidingMode: 0
 --- !u!50 &4364767924267758174
 Rigidbody2D:
@@ -751,6 +757,7 @@ MonoBehaviour:
   glidingIndicator: {fileID: 4364767924655254183}
   staminaBarFill: {fileID: 4364767924470775691}
   maxStaminaBarFill: {fileID: 4364767925124438424}
+  staminaMeter: {fileID: 4364767924816344136}
 --- !u!1 &4364767924470775690
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,7 +1151,7 @@ SpriteRenderer:
   m_SortingLayer: 8
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 837e0c7a577ce51458a2b92854671965, type: 3}
-  m_Color: {r: 0.32156864, g: 0.2509804, b: 0.2509804, a: 1}
+  m_Color: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -8,6 +8,7 @@ TagManager:
   - SlipWall
   - BasicWall
   - QualityWall
+  - Material
   layers:
   - Default
   - TransparentFX
@@ -68,6 +69,7 @@ TagManager:
     locked: 0
   - name: Overlay
     uniqueID: 3880086479
+    locked: 0
   - name: Foreground
     uniqueID: 1537964669
     locked: 0

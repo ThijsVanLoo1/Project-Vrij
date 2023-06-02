@@ -11,25 +11,30 @@ public class VisualFeedback : MonoBehaviour
     [SerializeField] GameObject stunIndicator;
     [SerializeField] GameObject glidingIndicator;
 
+    [SerializeField] TextMeshPro materialCounter;
+
     [SerializeField] Transform staminaBarFill;
     [SerializeField] Transform maxStaminaBarFill;
+    [SerializeField] GameObject staminaMeter;
     Vector2 staminaScale;
     Vector2 maxStaminaScale;
 
     PlayerController controller;
     Glider glider;
+    CreatePlatform platform;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<PlayerController>();
         glider = GetComponent<Glider>();
+        platform = GetComponent<CreatePlatform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (controller.IsTouchingWall() && !controller.climbingMode && !controller.isStunned && controller.stamina != 0)
+        if (controller.IsTouchingWall() && !controller.climbingMode && !controller.isStunned && controller.stamina != 0 && !platform.buildMode)
         {
             wallDetectedIndicator.SetActive(true);
         }
@@ -65,6 +70,16 @@ public class VisualFeedback : MonoBehaviour
             glidingIndicator.SetActive(false);
         }
 
+        if (platform.buildMode)
+        {
+            materialCounter.gameObject.SetActive(true);
+            materialCounter.text = platform.platformMaterials.ToString();
+        }
+        else
+        {
+            materialCounter.gameObject.SetActive(false);
+        }
+
         staminaCounterText.text = controller.stamina.ToString("F1");
         StaminaBar();
     }
@@ -76,5 +91,14 @@ public class VisualFeedback : MonoBehaviour
 
         maxStaminaScale = new Vector2(controller.maxStamina / 10, maxStaminaBarFill.transform.localScale.y);
         maxStaminaBarFill.localScale = maxStaminaScale;
+
+        if (controller.maxStamina >= controller.staminaCap)
+        {
+            staminaMeter.SetActive(false);
+        }
+        else
+        {
+            staminaMeter.SetActive(true);
+        }
     }
 }

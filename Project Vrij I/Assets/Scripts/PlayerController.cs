@@ -35,7 +35,8 @@ public class PlayerController : MonoBehaviour
     [Header("Stamina Variables")]
     public float stamina;
     public float maxStamina;
-    float staminaCap;
+    public float staminaCap;
+    [SerializeField] float grabbingStaminaCost;
     [SerializeField] float staminaDrainage;
     [SerializeField] float staminaRestoration;
     [SerializeField] bool instantStaminaRestoration;
@@ -62,11 +63,13 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rb;
     Glider glider;
+    CreatePlatform createPlatform;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         glider = GetComponent<Glider>();
+        createPlatform = GetComponent<CreatePlatform>();
         gravityScale = rb.gravityScale;
         staminaCap = maxStamina;
         stamina = maxStamina;
@@ -229,11 +232,12 @@ public class PlayerController : MonoBehaviour
 
     void WallClimbing()
     {
-        if (Input.GetKeyDown(wallAttachInput) && IsTouchingWall() && stamina > 0 && !isStunned) // Check if: Button pressed, is touching wall, is not stunned
+        if (Input.GetKeyDown(wallAttachInput) && IsTouchingWall() && stamina > 0 && !isStunned && !createPlatform.buildMode) // Check if: Button pressed, is touching wall, is not stunned, is not in buildMode
         {
             if (!climbingMode)
             {
                 //rb.velocity = Vector2.zero;
+                stamina -= grabbingStaminaCost;
             }
             climbingMode = !climbingMode;
         }
@@ -294,33 +298,33 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetButtonDown("Jump") && xInput != 0 || Input.GetButtonDown("Jump") && yInput != 0) // Check if jump button is pressed + if there's movement input
             {
-                if (xInput < 0) // Left Input
-                {
-                    stamina -= wallJumpStaminaCost;
-                    maxStamina -= wallJumpMaxStaminaCost;
-                    climbingMode = false;
-                    rb.AddForce(Vector2.left * jumpForce * 2, ForceMode2D.Impulse);
-                }
-                if (xInput > 0) // Right Input
-                {
-                    stamina -= wallJumpStaminaCost;
-                    maxStamina -= wallJumpMaxStaminaCost;
-                    climbingMode = false;
-                    rb.AddForce(Vector2.right * jumpForce * 2, ForceMode2D.Impulse);
-                }
-                if (yInput < 0) // Down Input
-                {
-                    stamina -= wallJumpStaminaCost;
-                    maxStamina -= wallJumpMaxStaminaCost;
-                    climbingMode = false;
-                    rb.AddForce(Vector2.down * jumpForce, ForceMode2D.Impulse);
-                }
                 if (yInput > 0) // Up Input
                 {
                     stamina -= wallJumpStaminaCost;
                     maxStamina -= wallJumpMaxStaminaCost;
                     climbingMode = false;
                     rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                }
+                else if (yInput < 0) // Down Input
+                {
+                    stamina -= wallJumpStaminaCost;
+                    maxStamina -= wallJumpMaxStaminaCost;
+                    climbingMode = false;
+                    rb.AddForce(Vector2.down * jumpForce, ForceMode2D.Impulse);
+                }
+                else if (xInput < 0) // Left Input
+                {
+                    stamina -= wallJumpStaminaCost;
+                    maxStamina -= wallJumpMaxStaminaCost;
+                    climbingMode = false;
+                    rb.AddForce(Vector2.left * jumpForce * 2, ForceMode2D.Impulse);
+                }
+                else if (xInput > 0) // Right Input
+                {
+                    stamina -= wallJumpStaminaCost;
+                    maxStamina -= wallJumpMaxStaminaCost;
+                    climbingMode = false;
+                    rb.AddForce(Vector2.right * jumpForce * 2, ForceMode2D.Impulse);
                 }
             }
         }
