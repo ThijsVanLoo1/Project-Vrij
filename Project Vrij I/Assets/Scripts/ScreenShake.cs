@@ -6,7 +6,7 @@ public class ScreenShake : MonoBehaviour
 {
     [SerializeField] AnimationCurve curve;
 
-    [SerializeField] bool start;
+    public bool start;
     [SerializeField] float duration = 1;
 
     // Start is called before the first frame update

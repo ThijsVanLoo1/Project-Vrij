@@ -9,11 +9,14 @@ public class CreatePlatform : MonoBehaviour
     [SerializeField] LayerMask wallLayer;
 
     [SerializeField] GameObject hangingPlatformPrefab;
+    [SerializeField] AudioClip creationSound;
 
     public int platformMaterials;
     [SerializeField] int maxPlatformMaterials;
 
     public bool buildMode;
+
+    public bool unlockedPlatform;
 
     PlayerController controller;
 
@@ -28,7 +31,7 @@ public class CreatePlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(keyInput))
+        if (Input.GetKey(keyInput) && unlockedPlatform)
         {
             buildMode = true;
             spawnPoint.gameObject.SetActive(true);
@@ -61,6 +64,7 @@ public class CreatePlatform : MonoBehaviour
 
     void PutUpPlatform()
     {
+        AudioSource.PlayClipAtPoint(creationSound, transform.position);
         platformMaterials--;
         Instantiate(hangingPlatformPrefab, spawnPoint.position, Quaternion.identity);
     }
@@ -69,7 +73,7 @@ public class CreatePlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Material") && platformMaterials != maxPlatformMaterials)
         {
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
             platformMaterials++;
         }
     }

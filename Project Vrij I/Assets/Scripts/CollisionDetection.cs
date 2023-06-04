@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CollisionDetection : MonoBehaviour
 {
+    [SerializeField] AudioClip damageSound;
+
     PlayerController controller;
 
     // Start is called before the first frame update
@@ -36,6 +38,7 @@ public class CollisionDetection : MonoBehaviour
 
     void ObstacleHit()
     {
+        AudioSource.PlayClipAtPoint(damageSound, transform.position);
         controller.GetHit(3, 1.5f);
     }
 

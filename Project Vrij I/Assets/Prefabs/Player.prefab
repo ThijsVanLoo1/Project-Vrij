@@ -611,6 +611,7 @@ MonoBehaviour:
   stamina: 0
   maxStamina: 10
   staminaCap: 0
+  grabbingStaminaCost: 0
   staminaDrainage: 0.4
   staminaRestoration: 5
   instantStaminaRestoration: 0
@@ -623,6 +624,7 @@ MonoBehaviour:
   climbingSpeedMultiplierX: 1
   climbingSpeedMultiplierY: 1
   canClimbVertically: 1
+  unlockedPlatform: 0
   holdingRope: 0
   canInputMovement: 1
   groundCheck: {fileID: 4364767923793357847}
@@ -653,8 +655,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   hangingPlatformPrefab: {fileID: 4295004402114981291, guid: 8e754d8ba0a84424cab559d50a76397d, type: 3}
+  creationSound: {fileID: 8300000, guid: e23df3954a21e02418dca1952a383225, type: 3}
+  platformMaterials: 0
   maxPlatformMaterials: 2
   buildMode: 0
+  unlockedPlatform: 0
 --- !u!114 &4364767924267758168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -685,6 +690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97269988e218c6f4d9f93e59c214a05e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageSound: {fileID: 8300000, guid: cfaf4e206adfdb742a145af24d99ce39, type: 3}
 --- !u!114 &4364767924267758169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -755,6 +761,7 @@ MonoBehaviour:
   staminaCounterText: {fileID: 4364767923819706062}
   stunIndicator: {fileID: 4364767925156172348}
   glidingIndicator: {fileID: 4364767924655254183}
+  materialCounter: {fileID: 0}
   staminaBarFill: {fileID: 4364767924470775691}
   maxStaminaBarFill: {fileID: 4364767925124438424}
   staminaMeter: {fileID: 4364767924816344136}
@@ -898,8 +905,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4364767924816344136}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.104, z: 0}
-  m_LocalScale: {x: 2.0607, y: 2.0607, z: 2.0607}
+  m_LocalPosition: {x: 0, y: -0.8, z: 0}
+  m_LocalScale: {x: 1.113561, y: 1.113561, z: 1.113561}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4364767923819706060}

@@ -53,6 +53,10 @@ public class PlayerController : MonoBehaviour
     public float climbingSpeedMultiplierY = 1;
     public bool canClimbVertically = true;
 
+    [Space]
+    [Header("Ability Lock")]
+    public bool unlockedPlatform;
+
     public bool holdingRope;
     public bool canInputMovement = true;
     float xInput;
@@ -64,12 +68,14 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     Glider glider;
     CreatePlatform createPlatform;
+    PlayerAudio playerAudio;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         glider = GetComponent<Glider>();
         createPlatform = GetComponent<CreatePlatform>();
+        playerAudio = GetComponent<PlayerAudio>();
         gravityScale = rb.gravityScale;
         staminaCap = maxStamina;
         stamina = maxStamina;
@@ -194,6 +200,7 @@ public class PlayerController : MonoBehaviour
             {
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
                 lastJumpTime = 0;
+                playerAudio.Jump();
 
                 if (climbingMode)
                 {
@@ -240,6 +247,7 @@ public class PlayerController : MonoBehaviour
                 stamina -= grabbingStaminaCost;
             }
             climbingMode = !climbingMode;
+            playerAudio.Attach();
         }
         if (!IsTouchingWall()) // if not touching wall
         {
