@@ -20775,11 +20775,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6498202231549209734, guid: c0997a8cde2e589459e05d23dabb2bb3, type: 3}
       propertyPath: m_TileMatrixArray.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6498202231549209734, guid: c0997a8cde2e589459e05d23dabb2bb3, type: 3}
       propertyPath: m_TileSpriteArray.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6498202231549209734, guid: c0997a8cde2e589459e05d23dabb2bb3, type: 3}
       propertyPath: m_Tiles.Array.data[1].first.x
