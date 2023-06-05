@@ -37,7 +37,7 @@ public class CameraFollow : MonoBehaviour
         transform.position = new Vector3(targetPosition.x, targetPosition.y, -10);
 
         //CameraScroll();
-        Zoom();
+        //Zoom();
     }
 
     void CameraScroll()

@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShakeTrigger : MonoBehaviour
 {
     [SerializeField] ScreenShake shake;
+    [SerializeField] float delay;
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +23,14 @@ public class ShakeTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            shake.start = true;
-            Destroy(gameObject);
+            StartCoroutine(ShakeDelay());
         }
+    }
+
+    IEnumerator ShakeDelay()
+    {
+        yield return new WaitForSeconds(delay);
+        shake.start = true;
+        Destroy(gameObject);
     }
 }
