@@ -10,6 +10,7 @@ public class CreatePlatform : MonoBehaviour
 
     [SerializeField] GameObject hangingPlatformPrefab;
     [SerializeField] AudioClip creationSound;
+    [SerializeField] GameObject restockTextPrefab;
 
     public int platformMaterials;
     [SerializeField] int maxPlatformMaterials;
@@ -71,10 +72,21 @@ public class CreatePlatform : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Material") && platformMaterials != maxPlatformMaterials)
+        if (collision.gameObject.CompareTag("Restock") && platformMaterials != maxPlatformMaterials)
         {
-            //Destroy(collision.gameObject);
-            platformMaterials++;
+            platformMaterials = maxPlatformMaterials;
+            GameObject text = Instantiate(restockTextPrefab, transform.position, Quaternion.identity);
+            Destroy(text, 2);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Restock") && platformMaterials != maxPlatformMaterials)
+        {
+            platformMaterials = maxPlatformMaterials;
+            GameObject text = Instantiate(restockTextPrefab, transform.position, Quaternion.identity);
+            Destroy(text, 2);
         }
     }
 

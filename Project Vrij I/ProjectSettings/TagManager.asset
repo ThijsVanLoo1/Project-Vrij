@@ -8,7 +8,7 @@ TagManager:
   - SlipWall
   - BasicWall
   - QualityWall
-  - Material
+  - Restock
   layers:
   - Default
   - TransparentFX
