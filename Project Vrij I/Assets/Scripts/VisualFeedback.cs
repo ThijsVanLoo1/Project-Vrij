@@ -70,18 +70,18 @@ public class VisualFeedback : MonoBehaviour
             glidingIndicator.SetActive(false);
         }
 
-        if (platform.buildMode)
-        {
-            materialCounter.gameObject.SetActive(true);
-            materialCounter.text = platform.platformMaterials.ToString();
-        }
-        else
-        {
-            materialCounter.gameObject.SetActive(false);
-        }
+        //if (platform.buildMode)
+        //{
+        //    materialCounter.gameObject.SetActive(true);
+        //    materialCounter.text = platform.platformMaterials.ToString();
+        //}
+        //else
+        //{
+        //    materialCounter.gameObject.SetActive(false);
+        //}
 
         staminaCounterText.text = controller.stamina.ToString("F1");
-        StaminaBar();
+        //StaminaBar();
     }
 
     void StaminaBar()

@@ -7,6 +7,8 @@ public class ZoomTrigger : MonoBehaviour
     [SerializeField] float targetSize;
     [SerializeField] float zoomSpeed;
 
+    [SerializeField] bool destroyOnTrigger;
+
     bool zoom;
 
     Camera mainCamera;
@@ -23,7 +25,10 @@ public class ZoomTrigger : MonoBehaviour
         if (mainCamera.orthographicSize >= targetSize)
         {
             mainCamera.orthographicSize = targetSize;
-            Destroy(gameObject);
+            if (destroyOnTrigger)
+            {
+                Destroy(gameObject);
+            }
         }
 
         if (zoom)
