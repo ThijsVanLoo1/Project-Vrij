@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour
     Glider glider;
     CreatePlatform createPlatform;
     PlayerAudio playerAudio;
+    public Animator animator;
 
     void Start()
     {
@@ -101,6 +102,17 @@ public class PlayerController : MonoBehaviour
         if (canInputMovement)
         {
             xInput = Input.GetAxisRaw("Horizontal");
+            animator.SetFloat("Speed", Mathf.Abs(xInput));//Sets the float from the Animator equal to the positive player speed of this script
+
+            if(xInput > 0f) //Player faces to the right, so original animation
+            {
+                transform.localScale = new Vector2(1f, 1f);
+            }
+            else if( xInput < 0f)//Player faces to the left, so animation is flipped
+            {
+                transform.localScale = new Vector2(-1f, 1f);
+            }
+
             if (canClimbVertically)
             {
                 yInput = Input.GetAxisRaw("Vertical");
@@ -201,6 +213,7 @@ public class PlayerController : MonoBehaviour
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
                 lastJumpTime = 0;
                 playerAudio.Jump();
+                animator.SetBool("IsJumping", true);//Jump animation is triggered
 
                 if (climbingMode)
                 {
@@ -218,6 +231,7 @@ public class PlayerController : MonoBehaviour
 
         if (IsGrounded())
         {
+            animator.SetBool("IsJumping", false);//Player is grounded, jump animation stops
             lastGroundedTime = 0;
         }
         else
