@@ -55,9 +55,9 @@ public class PlayerController : MonoBehaviour
 
     [Space]
     [Header("Ability Lock")]
-    public bool unlockedPlatform;
+    public bool unlockedLeap;
 
-    public bool holdingRope;
+    [Space]
     public bool canInputMovement = true;
     float xInput;
     float yInput;
@@ -316,7 +316,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Wall Leaping
-        if (climbingMode) // Check if climbing
+        if (climbingMode && unlockedLeap) // Check if climbing and leap is unlocked
         {
             if (Input.GetButtonDown("Jump") && xInput != 0 || Input.GetButtonDown("Jump") && yInput != 0) // Check if jump button is pressed + if there's movement input
             {
