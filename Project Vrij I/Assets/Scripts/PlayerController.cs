@@ -102,7 +102,19 @@ public class PlayerController : MonoBehaviour
         if (canInputMovement)
         {
             xInput = Input.GetAxisRaw("Horizontal");
-            animator.SetFloat("Speed", Mathf.Abs(xInput));//Sets the float from the Animator equal to the positive player speed of this script
+            if(xInput < 0 || xInput > 0 || yInput < 0 || yInput > 0)
+            {
+                animator.SetBool("IsMoving", true);
+            }
+            else
+            {
+                animator.SetBool("IsMoving", false);
+            }
+
+            if (IsGrounded())
+            {
+                animator.SetFloat("Speed", Mathf.Abs(xInput));//Sets the float from the Animator equal to the positive player speed of this script
+            }
 
             if(xInput > 0f) //Player faces to the right, so original animation
             {
@@ -116,6 +128,7 @@ public class PlayerController : MonoBehaviour
             if (canClimbVertically)
             {
                 yInput = Input.GetAxisRaw("Vertical");
+                animator.SetFloat("VerticalInput", Mathf.Abs(yInput));
             }
 
             Run();
@@ -178,6 +191,7 @@ public class PlayerController : MonoBehaviour
             if (!climbingMode && IsGrounded()) // Check if not climbing is touching ground
             {
                 runningMomentum += Time.deltaTime * runningAcceleration;
+                animator.SetFloat("Running", Mathf.Abs(runningMomentum));
             }
         }
         else 
@@ -202,6 +216,8 @@ public class PlayerController : MonoBehaviour
         {
             runningMomentum = maxRunningMomentum;
         }
+
+        animator.SetFloat("Running", Mathf.Abs(runningMomentum));
     }
 
     void Jump()
@@ -229,14 +245,20 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (IsGrounded())
+        if(rb.velocity.y < -0.2f)
         {
             animator.SetBool("IsJumping", false);//Player is grounded, jump animation stops
+        }
+
+        if (IsGrounded())
+        {
             lastGroundedTime = 0;
+            animator.SetBool("IsFalling", false);
         }
         else
         {
             lastGroundedTime += Time.deltaTime;
+            animator.SetBool("IsFalling", true);
         }
         lastJumpTime += Time.deltaTime;
 
@@ -259,6 +281,13 @@ public class PlayerController : MonoBehaviour
             {
                 //rb.velocity = Vector2.zero;
                 stamina -= grabbingStaminaCost;
+                animator.SetBool("IsClimbing", true);
+                animator.SetBool("IsJumping", false);
+                animator.SetBool("IsFalling", false);
+            }
+            else
+            {
+                animator.SetBool("IsClimbing", false);
             }
             climbingMode = !climbingMode;
             playerAudio.Attach();
@@ -266,12 +295,13 @@ public class PlayerController : MonoBehaviour
         if (!IsTouchingWall()) // if not touching wall
         {
             climbingMode = false;
+            animator.SetBool("IsClimbing", false);
         }
 
         if (climbingMode)
         {
             rb.gravityScale = 0;
-            transform.SetParent(touchedWall.transform);
+            //transform.SetParent(touchedWall.transform);
 
             stamina -= Time.deltaTime * staminaDrainage * staminaDrainageMultiplier;
             maxStamina -= Time.deltaTime * maxStaminaDrainage * staminaDrainageMultiplier;
