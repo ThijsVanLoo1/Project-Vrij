@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4295004402114981289}
   - component: {fileID: 4295004402114981290}
   - component: {fileID: 4295004402114981288}
+  - component: {fileID: 1392324013996102241}
   m_Layer: 0
   m_Name: Hanging Platform Hook
   m_TagString: Untagged
@@ -68,6 +69,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &1392324013996102241
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4295004402114981291}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b62141eb6d0dc194898894a5cb4f952b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &4295004402364485331
 GameObject:
   m_ObjectHideFlags: 0

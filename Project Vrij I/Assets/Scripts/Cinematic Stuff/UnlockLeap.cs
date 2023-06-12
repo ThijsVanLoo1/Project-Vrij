@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnlockPlatform : MonoBehaviour
+public class UnlockLeap : MonoBehaviour
 {
     [SerializeField] GameObject unlockUI;
     ParticleSystem particles;
@@ -18,7 +18,7 @@ public class UnlockPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -32,7 +32,7 @@ public class UnlockPlatform : MonoBehaviour
         {
             unlocked = true;
             unlockUI.SetActive(true);
-            collision.gameObject.GetComponent<CreatePlatform>().unlockedPlatform = true;
+            collision.gameObject.GetComponent<PlayerController>().unlockedLeap = true;
             particles.Stop();
             //Destroy(gameObject);
         }

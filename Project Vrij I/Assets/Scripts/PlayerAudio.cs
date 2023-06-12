@@ -8,11 +8,13 @@ public class PlayerAudio : MonoBehaviour
     [SerializeField] AudioClip attachWallSound;
     [SerializeField] AudioClip deattachWallSound;
     [SerializeField] AudioClip landSound;
+    [SerializeField] AudioClip[] climbingSound;
+    [SerializeField] AudioClip[] steppingSounds;
 
     PlayerController controller;
     AudioSource audioSource;
 
-            bool touchingGround;
+    bool touchingGround;
 
     // Start is called before the first frame update
     void Start()
@@ -24,18 +26,7 @@ public class PlayerAudio : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (controller.IsGrounded())
-        {
-            if (!touchingGround)
-            {
-                Land();
-            }
-            touchingGround = true;
-        }
-        else
-        {
-            touchingGround = false;
-        }
+
     }
 
     public void Jump()
@@ -51,6 +42,18 @@ public class PlayerAudio : MonoBehaviour
     public void Deattach()
     {
         audioSource.PlayOneShot(deattachWallSound);
+    }
+
+    public void RandomClimb()
+    {
+        AudioClip randomSound = climbingSound[Random.Range(0, climbingSound.Length)];
+        audioSource.PlayOneShot(randomSound, Random.Range(0.3f, 0.6f));
+    }
+
+    public void RandomStep()
+    {
+        AudioClip randomSound = steppingSounds[Random.Range(0, steppingSounds.Length)];
+        audioSource.PlayOneShot(randomSound, 0.2f);
     }
 
     public void Land()

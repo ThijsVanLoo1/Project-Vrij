@@ -68,7 +68,6 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     Glider glider;
     CreatePlatform createPlatform;
-    PlayerAudio playerAudio;
     public Animator animator;
 
     void Start()
@@ -76,7 +75,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         glider = GetComponent<Glider>();
         createPlatform = GetComponent<CreatePlatform>();
-        playerAudio = GetComponent<PlayerAudio>();
         gravityScale = rb.gravityScale;
         staminaCap = maxStamina;
         stamina = maxStamina;
@@ -222,13 +220,12 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        if (lastGroundedTime <= jumpCoyoteTime) // Check if coyote time applies
+        if (lastGroundedTime <= jumpCoyoteTime && !climbingMode) // Check if coyote time applies and if not climbing
         {
             if (Input.GetButtonDown("Jump") && lastJumpTime > 0.2f)
             {
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
                 lastJumpTime = 0;
-                playerAudio.Jump();
                 animator.SetBool("IsJumping", true);//Jump animation is triggered
 
                 if (climbingMode)
@@ -239,7 +236,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetButtonUp("Jump"))
+            if (Input.GetButtonUp("Jump") && !climbingMode)
             {
                 rb.AddForce(Vector2.down * rb.velocity.y * (1 - jumpCutMultiplier), ForceMode2D.Impulse);
             }
@@ -290,7 +287,6 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("IsClimbing", false);
             }
             climbingMode = !climbingMode;
-            playerAudio.Attach();
         }
         if (!IsTouchingWall()) // if not touching wall
         {
@@ -329,6 +325,7 @@ public class PlayerController : MonoBehaviour
                 }
                 maxStamina += Time.deltaTime * maxStaminaRestoration;
             }
+            animator.SetBool("IsClimbing", false);
         }
 
         if (stamina >= maxStamina)
