@@ -45,6 +45,12 @@ public class WallTypeDetector : MonoBehaviour
                 controller.climbingSpeedMultiplierX = 1.5f;
                 controller.climbingSpeedMultiplierY = 1.5f;
             }
+            else if (touchedWall.gameObject.CompareTag("RoughWall"))
+            {
+                controller.staminaDrainageMultiplier = 1;
+                controller.climbingSpeedMultiplierX = 0.6f;
+                controller.climbingSpeedMultiplierY = 0.6f;
+            }
         }
         else
         {

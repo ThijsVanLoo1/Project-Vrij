@@ -9,6 +9,7 @@ TagManager:
   - BasicWall
   - QualityWall
   - Restock
+  - RoughWall
   layers:
   - Default
   - TransparentFX

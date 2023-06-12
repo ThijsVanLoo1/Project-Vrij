@@ -23,16 +23,13 @@ public class CollisionDetection : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (controller.climbingMode)
+        switch (collision.gameObject.tag)
         {
-            switch (collision.gameObject.tag)
-            {
-                case "Obstacle":
-                    ObstacleHit();
-                    break;
-                default:
-                    break;
-            }
+            case "Obstacle":
+                ObstacleHit();
+                break;
+            default:
+                break;
         }
     }
 

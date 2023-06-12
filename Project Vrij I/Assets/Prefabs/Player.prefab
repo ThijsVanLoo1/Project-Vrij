@@ -1003,7 +1003,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4554816254439273253}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -1556,7 +1556,7 @@ MonoBehaviour:
   runningMomentum: 0
   runStartSpeed: 1
   maxRunningMomentum: 5
-  runningAcceleration: 2
+  runningAcceleration: 1.5
   jumpForce: 7
   fallGravityMultiplier: 1.5
   jumpCutMultiplier: 0.5
@@ -1582,7 +1582,7 @@ MonoBehaviour:
   climbingSpeedMultiplierX: 1
   climbingSpeedMultiplierY: 1
   canClimbVertically: 1
-  unlockedPlatform: 0
+  unlockedLeap: 1
   holdingRope: 0
   canInputMovement: 1
   animator: {fileID: 263231936202724121}
@@ -1716,6 +1716,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd81dbf7b01db4747a774f49180bd87a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 4554816254341312804}
+  stunnedColor: {r: 0.39248845, g: 0.5497623, b: 0.5660378, a: 1}
   wallDetectedIndicator: {fileID: 4554816254985505009}
   climbingIndicator: {fileID: 4554816254750607439}
   staminaCounterText: {fileID: 4554816254567959624}

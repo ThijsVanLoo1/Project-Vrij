@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
     [Space]
     [Header("Ability Lock")]
-    public bool unlockedPlatform;
+    public bool unlockedLeap;
 
     public bool holdingRope;
     public bool canInputMovement = true;
@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
             if (canClimbVertically)
             {
                 yInput = Input.GetAxisRaw("Vertical");
-                animator.SetFloat("VerticalInput", Mathf.Abs(yInput));
+                //animator.SetFloat("VerticalInput", Mathf.Abs(yInput));
             }
 
             Run();
@@ -346,7 +346,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Wall Leaping
-        if (climbingMode) // Check if climbing
+        if (climbingMode && unlockedLeap) // Check if climbing and leap is unlocked
         {
             if (Input.GetButtonDown("Jump") && xInput != 0 || Input.GetButtonDown("Jump") && yInput != 0) // Check if jump button is pressed + if there's movement input
             {
@@ -378,6 +378,8 @@ public class PlayerController : MonoBehaviour
                     climbingMode = false;
                     rb.AddForce(Vector2.right * jumpForce * 2, ForceMode2D.Impulse);
                 }
+                animator.SetBool("IsClimbing", false);
+                animator.SetBool("IsJumping", true); //Jump animation is triggered
             }
         }
     }
@@ -396,6 +398,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isStunned)
         {
+            animator.SetBool("IsClimbing", false);
             isStunned = true;
             climbingMode = false;
             stamina -= staminaAmount;

@@ -5,6 +5,9 @@ using TMPro;
 
 public class VisualFeedback : MonoBehaviour
 {
+    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] Color stunnedColor;
+
     [SerializeField] GameObject wallDetectedIndicator;
     [SerializeField] GameObject climbingIndicator;
     [SerializeField] TextMeshPro staminaCounterText;
@@ -54,11 +57,11 @@ public class VisualFeedback : MonoBehaviour
 
         if (controller.isStunned)
         {
-            stunIndicator.SetActive(true);
+            spriteRenderer.color = stunnedColor;
         }
         else
         {
-            stunIndicator.SetActive(false);
+            spriteRenderer.color = new Color(255, 255, 255);
         }
 
         if (glider.glidingMode)
