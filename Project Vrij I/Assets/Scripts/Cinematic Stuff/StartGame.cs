@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class StartGame : MonoBehaviour
 {
+    bool started;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,10 +15,16 @@ public class StartGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !started)
         {
-            Time.timeScale = 1;
-            Destroy(gameObject);
+            started = true;
+            GetComponent<AudioSource>().Play();
+            Invoke("ResumeTime", 4);
         }
+    }
+
+    void ResumeTime()
+    {
+        Time.timeScale = 0;
     }
 }

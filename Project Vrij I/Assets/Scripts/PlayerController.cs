@@ -54,10 +54,10 @@ public class PlayerController : MonoBehaviour
     public bool canClimbVertically = true;
 
     [Space]
-    [Header("Ability Lock")]
+    [Header("Additional Settings")]
+    public bool easyMode;
     public bool unlockedLeap;
 
-    public bool holdingRope;
     public bool canInputMovement = true;
     float xInput;
     float yInput;
@@ -81,6 +81,13 @@ public class PlayerController : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        if (easyMode)
+        {
+            staminaDrainage = staminaDrainage / 2;
+            maxStaminaRestoration = maxStaminaRestoration * 2;
+            //climbSpeed = climbSpeed * 1.5f;
+        }
     }
 
     void FixedUpdate()
