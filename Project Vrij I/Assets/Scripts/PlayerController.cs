@@ -139,11 +139,15 @@ public class PlayerController : MonoBehaviour
             Run();
             Jump();
             WallClimbing();
+
+            animator.SetBool("isLooking", false);
         }
         else
         {
             xInput = 0;
             yInput = 0;
+            animator.SetBool("isLooking", true);
+            animator.SetBool("IsFalling", false);
         }
         Friction(); // Prevents player from slipping off edges
     }

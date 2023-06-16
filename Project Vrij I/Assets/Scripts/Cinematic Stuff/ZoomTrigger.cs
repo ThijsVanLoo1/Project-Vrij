@@ -9,6 +9,7 @@ public class ZoomTrigger : MonoBehaviour
 
     [SerializeField] bool destroyOnTrigger;
 
+    [SerializeField] bool autoZoom;
     bool zoom;
 
     Camera mainCamera;
@@ -29,6 +30,11 @@ public class ZoomTrigger : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+        }
+
+        if (autoZoom)
+        {
+            zoom = true;
         }
 
         if (zoom)
