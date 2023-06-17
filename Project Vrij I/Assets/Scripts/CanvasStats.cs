@@ -40,7 +40,7 @@ public class CanvasStats : MonoBehaviour
 
         if (controller.maxStamina >= controller.staminaCap)
         {
-            staminaAnimator.SetTrigger("full");
+            StaminaFull();
             //staminaMeter.SetActive(false);
         }
         else
@@ -77,5 +77,10 @@ public class CanvasStats : MonoBehaviour
         {
             platformCounter.SetActive(false);
         }
+    }
+
+    public void StaminaFull()
+    {
+        staminaAnimator.SetTrigger("full");
     }
 }

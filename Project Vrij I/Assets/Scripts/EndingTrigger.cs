@@ -5,6 +5,7 @@ using UnityEngine;
 public class EndingTrigger : MonoBehaviour
 {
     [SerializeField] Animator endingAnimator;
+    [SerializeField] Transform eyeTransform;
 
     ParticleSystem particles;
 
@@ -30,8 +31,16 @@ public class EndingTrigger : MonoBehaviour
             endingAnimator.SetTrigger("start");
             PlayerController controller = collision.gameObject.GetComponent<PlayerController>();
             controller.canInputMovement = false;
-            controller.stamina = controller.maxStamina;
+            controller.stamina = controller.staminaCap;
+            FindObjectOfType<CanvasStats>().StaminaFull();
+            FindObjectOfType<CanvasStats>().enabled = false;
             particles.Stop();
         }
+    }
+
+    public void MoveCameraToEye()
+    {
+        Camera.main.GetComponent<CameraFollow>().followPlayer = false;
+        Camera.main.GetComponent<CameraFollow>().targetPosition = Vector3.MoveTowards(transform.position, eyeTransform.position, 10 * Time.deltaTime);
     }
 }

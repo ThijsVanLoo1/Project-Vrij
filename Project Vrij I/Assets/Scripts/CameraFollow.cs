@@ -13,8 +13,11 @@ public class CameraFollow : MonoBehaviour
     public float zoomSpeed;
     public bool zoomedOut;
 
+    public bool followPlayer = true;
+
     Camera thisCamera;
     PlayerController controller;
+    public Vector3 targetPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -30,10 +33,13 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 targetPosition = Vector3.MoveTowards(transform.position, player.position, followSpeed * Time.deltaTime);
+
+        if (followPlayer)
+        {
+            targetPosition = Vector3.MoveTowards(transform.position, player.position, followSpeed * Time.deltaTime);
+        }
 
         distance = Vector2.Distance(transform.position, targetPosition);
-
         transform.position = new Vector3(targetPosition.x, targetPosition.y, -10);
 
         //CameraScroll();

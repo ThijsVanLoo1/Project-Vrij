@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4147665217372585857}
   - component: {fileID: 4147665217372585856}
   - component: {fileID: 4147665217372585871}
+  - component: {fileID: 3506780836128621896}
   m_Layer: 0
   m_Name: Big fucking eye
   m_TagString: Untagged
@@ -105,3 +106,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &3506780836128621896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4147665217372585870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e1f309b9eca8c04299c22281dacd545, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
