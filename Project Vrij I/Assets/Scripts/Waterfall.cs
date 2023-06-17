@@ -7,13 +7,13 @@ public class Waterfall : MonoBehaviour
     [SerializeField] float waterStrength;
     [SerializeField] AudioClip waterSplashSound;
 
-    AudioSource audioSource;
+    //AudioSource audioSource;
     Vector2 waterDirection;
 
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        //audioSource = GetComponent<AudioSource>();
         waterDirection = new Vector2(0, -waterStrength);
     }
 
@@ -28,7 +28,7 @@ public class Waterfall : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             AudioSource.PlayClipAtPoint(waterSplashSound, collision.transform.position);
-            audioSource.PlayOneShot(waterSplashSound);
+            //audioSource.PlayOneShot(waterSplashSound);
         }
     }
 

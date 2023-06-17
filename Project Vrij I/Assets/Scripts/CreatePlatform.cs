@@ -10,7 +10,8 @@ public class CreatePlatform : MonoBehaviour
 
     [SerializeField] GameObject hangingPlatformPrefab;
     [SerializeField] AudioClip creationSound;
-    [SerializeField] GameObject restockTextPrefab;
+    [SerializeField] GameObject restockNotification;
+    [SerializeField] GameObject outOfPlatformsNotification;
 
     public int platformMaterials;
     [SerializeField] int maxPlatformMaterials;
@@ -44,6 +45,10 @@ public class CreatePlatform : MonoBehaviour
                     {
                         PutUpPlatform();
                     }
+                    else
+                    {
+                        outOfPlatformsNotification.SetActive(true);
+                    }
                 }
             }
         }
@@ -75,8 +80,7 @@ public class CreatePlatform : MonoBehaviour
         if (collision.gameObject.CompareTag("Restock") && platformMaterials != maxPlatformMaterials)
         {
             platformMaterials = maxPlatformMaterials;
-            GameObject text = Instantiate(restockTextPrefab, transform.position, Quaternion.identity);
-            Destroy(text, 2);
+            restockNotification.SetActive(true);
         }
     }
 
@@ -85,8 +89,7 @@ public class CreatePlatform : MonoBehaviour
         if (collision.gameObject.CompareTag("Restock") && platformMaterials != maxPlatformMaterials)
         {
             platformMaterials = maxPlatformMaterials;
-            GameObject text = Instantiate(restockTextPrefab, transform.position, Quaternion.identity);
-            Destroy(text, 2);
+            restockNotification.SetActive(true);
         }
     }
 

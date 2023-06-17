@@ -28,7 +28,9 @@ public class EndingTrigger : MonoBehaviour
         {
             triggered = true;
             endingAnimator.SetTrigger("start");
-            collision.gameObject.GetComponent<PlayerController>().canInputMovement = false;
+            PlayerController controller = collision.gameObject.GetComponent<PlayerController>();
+            controller.canInputMovement = false;
+            controller.stamina = controller.maxStamina;
             particles.Stop();
         }
     }
