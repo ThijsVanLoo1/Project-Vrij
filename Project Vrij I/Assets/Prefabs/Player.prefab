@@ -1758,8 +1758,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   hangingPlatformPrefab: {fileID: 4295004402114981291, guid: 8e754d8ba0a84424cab559d50a76397d, type: 3}
-  creationSound: {fileID: 8300000, guid: e23df3954a21e02418dca1952a383225, type: 3}
-  restockTextPrefab: {fileID: 8599868443921981545, guid: 120d10b8583324546bdafb78b15965cb, type: 3}
+  creationSound: {fileID: 8300000, guid: cb0aba14108a1584db56e9fcd1a9fafb, type: 3}
+  restockNotification: {fileID: 0}
+  outOfPlatformsNotification: {fileID: 0}
   platformMaterials: 0
   maxPlatformMaterials: 2
   buildMode: 0

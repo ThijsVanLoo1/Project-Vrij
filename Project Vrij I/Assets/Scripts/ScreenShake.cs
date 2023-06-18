@@ -20,7 +20,7 @@ public class ScreenShake : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            start = true;
+            //start = true;
         }
 
         if (start)
