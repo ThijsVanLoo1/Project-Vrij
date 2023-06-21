@@ -29,6 +29,6 @@ public class SceneTransition : MonoBehaviour
 
     public void TransitionToNextScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("EndingScene");
     }
 }

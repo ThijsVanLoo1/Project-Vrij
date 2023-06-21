@@ -18,13 +18,13 @@ public class StartGame : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) && !started)
         {
             started = true;
-            GetComponent<AudioSource>().Play();
-            Invoke("ResumeTime", 4);
+            ResumeTime();
         }
     }
 
     void ResumeTime()
     {
-        Time.timeScale = 0;
+        Time.timeScale = 1;
+        Destroy(gameObject);
     }
 }
