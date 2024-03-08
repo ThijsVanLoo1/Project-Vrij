@@ -10,11 +10,12 @@ TagManager:
   - QualityWall
   - Restock
   - RoughWall
+  - Material
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Post Processing
   - Water
   - UI
   - Ground
