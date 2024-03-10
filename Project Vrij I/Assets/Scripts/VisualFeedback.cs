@@ -64,15 +64,6 @@ public class VisualFeedback : MonoBehaviour
             spriteRenderer.color = new Color(255, 255, 255);
         }
 
-        if (glider.glidingMode)
-        {
-            glidingIndicator.SetActive(true);
-        }
-        else
-        {
-            glidingIndicator.SetActive(false);
-        }
-
         //if (platform.buildMode)
         //{
         //    materialCounter.gameObject.SetActive(true);

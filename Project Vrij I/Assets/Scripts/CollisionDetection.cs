@@ -33,6 +33,18 @@ public class CollisionDetection : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Obstacle":
+                ObstacleHit();
+                break;
+            default:
+                break;
+        }
+    }
+
     void ObstacleHit()
     {
         AudioSource.PlayClipAtPoint(damageSound, transform.position);

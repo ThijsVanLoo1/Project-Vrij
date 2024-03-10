@@ -1648,12 +1648,11 @@ GameObject:
   - component: {fileID: 4554816255127161053}
   - component: {fileID: 4554816255127161054}
   - component: {fileID: 4554816255127161052}
-  - component: {fileID: 4554816255127161055}
+  - component: {fileID: 6245198238442318382}
   - component: {fileID: 4554816255127161048}
   - component: {fileID: 4554816255127161031}
   - component: {fileID: 4554816255127161051}
   - component: {fileID: 263231936453208925}
-  - component: {fileID: 263231936453208924}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1727,7 +1726,7 @@ MonoBehaviour:
   climbingSpeedMultiplierY: 1
   canClimbVertically: 1
   easyMode: 0
-  unlockedLeap: 1
+  unlockedLeap: 0
   canInputMovement: 1
   animator: {fileID: 263231936202724121}
   groundCheck: {fileID: 4554816254526936721}
@@ -1764,7 +1763,7 @@ MonoBehaviour:
   platformMaterials: 0
   maxPlatformMaterials: 2
   buildMode: 0
-  unlockedPlatform: 1
+  unlockedPlatform: 0
 --- !u!114 &4554816255127161054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1796,21 +1795,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageSound: {fileID: 8300000, guid: cfaf4e206adfdb742a145af24d99ce39, type: 3}
---- !u!114 &4554816255127161055
+--- !u!114 &6245198238442318382
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4554816255127161030}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d784a86052d803408652b483fde1082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glidingGravity: 0.4
-  glidingDrag: 0.5
-  glideInput: 325
+  glidingGravity: 0
+  glidingDrag: 0
+  glideInput: 0
   glidingMode: 0
 --- !u!50 &4554816255127161048
 Rigidbody2D:
@@ -1968,29 +1967,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &263231936453208924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4554816255127161030}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f2fdd395e73e7b44aae24195f7e3fc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpSound: {fileID: 8300000, guid: 03aa614c205a0204681c0222c0c73e52, type: 3}
-  attachWallSound: {fileID: 8300000, guid: 930133a8b36cab34fb71fbb259cf8e61, type: 3}
-  deattachWallSound: {fileID: 8300000, guid: 64f61c29053e480418c8cb4450df4799, type: 3}
-  landSound: {fileID: 8300000, guid: 64f61c29053e480418c8cb4450df4799, type: 3}
-  climbingSound:
-  - {fileID: 8300000, guid: 568ed49471c3bca4bae5e9dd1d1a15f1, type: 3}
-  - {fileID: 8300000, guid: 930133a8b36cab34fb71fbb259cf8e61, type: 3}
-  - {fileID: 8300000, guid: 8113f4524ee90694989147f8052bb1b1, type: 3}
-  - {fileID: 8300000, guid: 03aa614c205a0204681c0222c0c73e52, type: 3}
-  - {fileID: 8300000, guid: 64f61c29053e480418c8cb4450df4799, type: 3}
-  steppingSounds: []
 --- !u!1 &4554816255243884813
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,13 +8,13 @@ public class OneWayPlatform : MonoBehaviour
     bool playerTouching;
 
     PlatformEffector2D effector;
-    Collider2D collider;
+    Collider2D platformCollider;
 
     // Start is called before the first frame update
     void Start()
     {
         effector = GetComponent<PlatformEffector2D>();
-        collider = GetComponent<Collider2D>();
+        platformCollider = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -26,11 +26,11 @@ public class OneWayPlatform : MonoBehaviour
             {
                 touchingPlayer.GetComponent<PlayerController>().climbingMode = true;
             }
-            collider.enabled = false;
+            platformCollider.enabled = false;
         }
         else
         {
-            collider.enabled = true;
+            platformCollider.enabled = true;
         }
     }
 

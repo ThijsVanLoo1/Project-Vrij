@@ -47,7 +47,7 @@ public class Settings : MonoBehaviour
 
     public void LoadIntroScene()
     {
-        SceneManager.LoadScene("IntroScene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void SetResolution (int resolutionIndex)
