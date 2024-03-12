@@ -50,6 +50,11 @@ public class Settings : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     public void SetResolution (int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];
