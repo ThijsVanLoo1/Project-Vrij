@@ -65,6 +65,8 @@ public class PlayerController : MonoBehaviour
     float yMovement;
     float gravityScale;
 
+    [SerializeField] PauseGame pauseGame;
+
     Rigidbody2D rb;
     Glider glider;
     CreatePlatform createPlatform;
@@ -92,11 +94,11 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (climbingMode)
+        if (climbingMode && !pauseGame.isPaused)
         {
             WallMove();
         }
-        else
+        else if (!pauseGame.isPaused)
         {
             GroundMove();
         }
@@ -107,6 +109,7 @@ public class PlayerController : MonoBehaviour
         if (canInputMovement)
         {
             xInput = Input.GetAxisRaw("Horizontal");
+            if (pauseGame.isPaused) { xInput = 0; }
             if(xInput < 0 || xInput > 0 || yInput < 0 || yInput > 0)
             {
                 animator.SetBool("IsMoving", true);
@@ -133,6 +136,7 @@ public class PlayerController : MonoBehaviour
             if (canClimbVertically)
             {
                 yInput = Input.GetAxisRaw("Vertical");
+                if (pauseGame.isPaused) { yInput = 0; }
                 //animator.SetFloat("VerticalInput", Mathf.Abs(yInput));
             }
 
@@ -283,7 +287,7 @@ public class PlayerController : MonoBehaviour
 
     void WallClimbing()
     {
-        if (Input.GetKeyDown(wallAttachInput) && IsTouchingWall() && stamina > 0 && !isStunned && !createPlatform.buildMode) // Check if: Button pressed, is touching wall, is not stunned, is not in buildMode
+        if (Input.GetKeyDown(wallAttachInput) && IsTouchingWall() && stamina > 0 && !isStunned && !createPlatform.buildMode && !pauseGame.isPaused) // Check if: Button pressed, is touching wall, is not stunned, is not in buildMode
         {
             if (!climbingMode)
             {

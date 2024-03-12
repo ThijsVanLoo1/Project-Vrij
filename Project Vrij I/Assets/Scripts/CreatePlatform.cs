@@ -21,11 +21,13 @@ public class CreatePlatform : MonoBehaviour
     public bool unlockedPlatform;
 
     PlayerController controller;
+    PauseGame pauseGame;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<PlayerController>();
+        pauseGame = FindObjectOfType<PauseGame>();
 
         platformMaterials = maxPlatformMaterials;
 ;   }
@@ -33,7 +35,7 @@ public class CreatePlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(keyInput) && unlockedPlatform)
+        if (Input.GetKey(keyInput) && unlockedPlatform && !pauseGame.isPaused)
         {
             buildMode = true;
             spawnPoint.gameObject.SetActive(true);
