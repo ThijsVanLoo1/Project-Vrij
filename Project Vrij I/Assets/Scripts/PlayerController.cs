@@ -179,7 +179,7 @@ public class PlayerController : MonoBehaviour
 
         rb.AddForce(xMovement * Vector2.right); // applies movement variable as force
 
-
+        // Vertical X Movement
         float targetSpeedY = 0; // creates targetSpeed variable
         targetSpeedY = yInput * ((climbSpeed + runningMomentum) * climbingSpeedMultiplierY);
         float speedDifY = targetSpeedY - rb.velocity.y; // calculate difference between current and desired velocity

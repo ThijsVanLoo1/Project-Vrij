@@ -1065,7 +1065,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lucas Laurentius
+  m_text: Lucas van der Sloot
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 19ff5c5e24056f544919159540ee0d49, type: 2}
   m_sharedMaterial: {fileID: -1428293822961569968, guid: 19ff5c5e24056f544919159540ee0d49, type: 2}
@@ -12431,7 +12431,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lucas Laurentius
+  m_text: Lucas van der Sloot
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 19ff5c5e24056f544919159540ee0d49, type: 2}
   m_sharedMaterial: {fileID: -1428293822961569968, guid: 19ff5c5e24056f544919159540ee0d49, type: 2}
@@ -12804,7 +12804,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lucas Laurentius
+  m_text: Lucas van der Sloot
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 19ff5c5e24056f544919159540ee0d49, type: 2}
   m_sharedMaterial: {fileID: -1428293822961569968, guid: 19ff5c5e24056f544919159540ee0d49, type: 2}
