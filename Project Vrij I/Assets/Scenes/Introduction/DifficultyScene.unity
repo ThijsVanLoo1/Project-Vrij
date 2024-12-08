@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 72185911}
   - component: {fileID: 72185910}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: 'Select Difficulty:'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 950284783}
   - component: {fileID: 950284782}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Easy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -893,7 +893,7 @@ GameObject:
   - component: {fileID: 1958765876}
   - component: {fileID: 1958765875}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: Normal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

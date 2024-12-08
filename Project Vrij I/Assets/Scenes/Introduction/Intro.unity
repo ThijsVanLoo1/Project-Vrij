@@ -342,7 +342,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 1124056540
+    rgba: 4294950364
   m_fontColor: {r: 0.86134785, g: 0.740566, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -424,6 +424,7 @@ GameObject:
   - component: {fileID: 1038991325}
   - component: {fileID: 1038991329}
   - component: {fileID: 1038991330}
+  - component: {fileID: 1038991331}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -545,6 +546,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e1f309b9eca8c04299c22281dacd545, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1038991331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038991324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac4add87237643a4eb21135dacd6744b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1498758119

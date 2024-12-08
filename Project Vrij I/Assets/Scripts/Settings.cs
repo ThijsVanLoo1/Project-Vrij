@@ -9,6 +9,8 @@ public class Settings : MonoBehaviour
 {
     public TMP_Dropdown resolutionDropdown;
     Resolution[] resolutions;
+    [Space]
+    [SerializeField] GameObject difficultyOptions;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +50,12 @@ public class Settings : MonoBehaviour
     public void LoadIntroScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void ShowDifficultyOptions()
+    {
+        difficultyOptions.SetActive(true);
+        gameObject.SetActive(false);
     }
 
     public void QuitGame()
