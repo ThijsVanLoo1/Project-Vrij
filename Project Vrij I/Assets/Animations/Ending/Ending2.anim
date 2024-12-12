@@ -1112,7 +1112,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 35.666668
-    functionName: QuitGame
+    functionName: LoadNextScene
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
