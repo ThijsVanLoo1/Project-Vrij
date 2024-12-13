@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
     public bool canInputMovement = true;
     float xInput;
     float yInput;
+    Vector2 movementInput;
     float xMovement;
     float yMovement;
     float gravityScale;
@@ -71,6 +72,26 @@ public class PlayerController : MonoBehaviour
     Glider glider;
     CreatePlatform createPlatform;
     public Animator animator;
+
+
+    PlayerInput controls;
+    void Awake()
+    {
+        controls = new PlayerInput();
+        controls.Player.Move.performed += ctx => movementInput = ctx.ReadValue<Vector2>();
+        controls.Player.Move.canceled += ctx => movementInput = Vector2.zero;
+        controls.Player.Jump.performed += ctx => Jump();
+    }
+
+    void OnEnable()
+    {
+        controls.Player.Enable();
+    }
+
+    void OnDisable()
+    {
+        controls.Player.Disable();
+    }
 
     void Start()
     {
