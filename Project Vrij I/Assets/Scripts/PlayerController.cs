@@ -73,26 +73,6 @@ public class PlayerController : MonoBehaviour
     CreatePlatform createPlatform;
     public Animator animator;
 
-
-    PlayerInput controls;
-    void Awake()
-    {
-        controls = new PlayerInput();
-        controls.Player.Move.performed += ctx => movementInput = ctx.ReadValue<Vector2>();
-        controls.Player.Move.canceled += ctx => movementInput = Vector2.zero;
-        controls.Player.Jump.performed += ctx => Jump();
-    }
-
-    void OnEnable()
-    {
-        controls.Player.Enable();
-    }
-
-    void OnDisable()
-    {
-        controls.Player.Disable();
-    }
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();

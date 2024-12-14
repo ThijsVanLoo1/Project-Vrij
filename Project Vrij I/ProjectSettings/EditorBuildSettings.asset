@@ -19,11 +19,14 @@ EditorBuildSettings:
     guid: 5c30b25b14f54cb4cad37fa6a333d909
   - enabled: 1
     path: Assets/Scenes/Main Level/EasyWorld.unity
-    guid: c13aa7e128d0a5a4bb120d0ff54c32d9
+    guid: 26b12354bfbeef44980361c4a7726bd7
   - enabled: 1
-    path: Assets/Scenes/Main Level/EndingScene.unity
+    path: Assets/Scenes/Ending/EndingScene.unity
     guid: 412b03e80224a7e4592635977b1e0c8d
   - enabled: 1
-    path: Assets/Scenes/Main Level/Credits.unity
+    path: Assets/Scenes/Ending/Credits.unity
     guid: f5befc06e860abd47b7fb4705a628ed8
+  - enabled: 1
+    path: Assets/Scenes/Cutscene.unity
+    guid: 37c3f96ce81822e44a37a43f396e8dbf
   m_configObjects: {}
