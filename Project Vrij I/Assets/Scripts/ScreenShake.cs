@@ -9,6 +9,8 @@ public class ScreenShake : MonoBehaviour
     public bool start;
     [SerializeField] float duration = 1;
 
+    [SerializeField] ParticleSystem[] rubbleParticles;
+
     // Start is called before the first frame update
     void Start()
     {
