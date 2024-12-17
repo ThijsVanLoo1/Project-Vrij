@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c41bee24f11c1ba47a63289f678f7c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spottingDistance: 6
-  moveSpeed: 4
+  spottingDistance: 5
+  moveSpeed: 5
   fleeingPosition: {fileID: 1380010898438588288}
 --- !u!1 &945131066230865100
 GameObject:

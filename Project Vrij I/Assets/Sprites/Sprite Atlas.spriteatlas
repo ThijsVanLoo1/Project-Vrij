@@ -51,6 +51,8 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 90ac1adc0e6e2bd4185eb78c6b920bb7, type: 3}
     - {fileID: 2800000, guid: 53475e18720c39d4a992113dc1046b14, type: 3}
     - {fileID: 2800000, guid: b959e962b23dd77449fcef1acaed0fa8, type: 3}
+    - {fileID: 2800000, guid: 04b2f995c6bbbf44da475accb815dec0, type: 3}
+    - {fileID: 2800000, guid: d13bcd573c7524f4eb8f379b1d2a9a20, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -135,6 +137,9 @@ SpriteAtlas:
   - {fileID: -301789651, guid: 64644d73de1282f45bf208fb6d28e2ef, type: 3}
   - {fileID: 587202920, guid: 64644d73de1282f45bf208fb6d28e2ef, type: 3}
   - {fileID: -1924751225, guid: 64644d73de1282f45bf208fb6d28e2ef, type: 3}
+  - {fileID: -1209338351, guid: 04b2f995c6bbbf44da475accb815dec0, type: 3}
+  - {fileID: 1014906894, guid: 04b2f995c6bbbf44da475accb815dec0, type: 3}
+  - {fileID: 1207015995, guid: 04b2f995c6bbbf44da475accb815dec0, type: 3}
   - {fileID: -1061374785, guid: f4f7ef465eb6dc546bee3280fca8d5d3, type: 3}
   - {fileID: -1346106241, guid: f4f7ef465eb6dc546bee3280fca8d5d3, type: 3}
   - {fileID: -1221397288, guid: f4f7ef465eb6dc546bee3280fca8d5d3, type: 3}
@@ -172,6 +177,12 @@ SpriteAtlas:
   - {fileID: 330009025, guid: f4f7ef465eb6dc546bee3280fca8d5d3, type: 3}
   - {fileID: -345090675, guid: f4f7ef465eb6dc546bee3280fca8d5d3, type: 3}
   - {fileID: 1552062668, guid: f4f7ef465eb6dc546bee3280fca8d5d3, type: 3}
+  - {fileID: -554948590, guid: d13bcd573c7524f4eb8f379b1d2a9a20, type: 3}
+  - {fileID: -1017809768, guid: d13bcd573c7524f4eb8f379b1d2a9a20, type: 3}
+  - {fileID: -1434969071, guid: d13bcd573c7524f4eb8f379b1d2a9a20, type: 3}
+  - {fileID: 1917686300, guid: d13bcd573c7524f4eb8f379b1d2a9a20, type: 3}
+  - {fileID: 773041939, guid: d13bcd573c7524f4eb8f379b1d2a9a20, type: 3}
+  - {fileID: -1880161677, guid: d13bcd573c7524f4eb8f379b1d2a9a20, type: 3}
   - {fileID: -550925366, guid: 23e47cf7f54cab448bc07a5a8e2a2c73, type: 3}
   - {fileID: -1870804991, guid: 23e47cf7f54cab448bc07a5a8e2a2c73, type: 3}
   - {fileID: 115210246, guid: 23e47cf7f54cab448bc07a5a8e2a2c73, type: 3}
@@ -510,6 +521,9 @@ SpriteAtlas:
   - FadeFixed_47
   - FadeFixed_40
   - FadeFixed_41
+  - SPRIIIITTTTTEEEEE (1)_3
+  - SPRIIIITTTTTEEEEE (1)_7
+  - SPRIIIITTTTTEEEEE (1)_8
   - GroundT_30
   - GroundT_31
   - GroundT_32
@@ -547,6 +561,12 @@ SpriteAtlas:
   - GroundT_4
   - GroundT_9
   - GroundT_8
+  - SPRIIIITTTTTEEEEE_2
+  - SPRIIIITTTTTEEEEE_3
+  - SPRIIIITTTTTEEEEE_6
+  - SPRIIIITTTTTEEEEE_7
+  - SPRIIIITTTTTEEEEE_11
+  - SPRIIIITTTTTEEEEE_10
   - SnakeDamageTrans_21
   - SnakeDamageTrans_20
   - SnakeDamageTrans_23

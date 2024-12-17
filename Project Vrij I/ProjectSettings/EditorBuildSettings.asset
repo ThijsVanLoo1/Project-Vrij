@@ -19,7 +19,7 @@ EditorBuildSettings:
     guid: 5c30b25b14f54cb4cad37fa6a333d909
   - enabled: 1
     path: Assets/Scenes/Main Level/EasyWorld.unity
-    guid: 26b12354bfbeef44980361c4a7726bd7
+    guid: 5219c333ec5fc9d47bcce27973294632
   - enabled: 1
     path: Assets/Scenes/Ending/EndingScene.unity
     guid: 412b03e80224a7e4592635977b1e0c8d
