@@ -930,7 +930,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 12154002
+    rgba: 1220113554
   m_fontColor: {r: 0.57445616, g: 0.4557227, b: 0.7264151, a: 0.28235295}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -3135,6 +3135,7 @@ GameObject:
   - component: {fileID: 1836737890}
   - component: {fileID: 1836737889}
   - component: {fileID: 1836737894}
+  - component: {fileID: 1836737895}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3152,7 +3153,7 @@ Animator:
   m_GameObject: {fileID: 1836737888}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d3529bdac23744c4a8c89bd18bf12f2f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 99ea21874a58bd94c9f25177c58de3dd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3269,6 +3270,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac4add87237643a4eb21135dacd6744b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1836737895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836737888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f97131e0b7c3ae4c98ff33d2632f76e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1922016668
@@ -3527,7 +3540,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 12154002
+    rgba: 4290344082
   m_fontColor: {r: 0.57445616, g: 0.4557227, b: 0.7264151, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
