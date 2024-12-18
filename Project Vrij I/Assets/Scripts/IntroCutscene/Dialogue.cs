@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Dialogue : MonoBehaviour
 {
+    public string text;
     public float duration = 4;
+    bool autoDissapear = false;
 
     Animator animator;
+    TextMeshProUGUI[] textUI;
 
     // Start is called before the first frame update
     IEnumerator Start()
     {
         animator = GetComponent<Animator>();
-        Appear();
+        textUI = GetComponentsInChildren<TextMeshProUGUI>();
+        if (duration == 0) autoDissapear = true;
+
+        SetText();
 
         yield return new WaitForSeconds(duration);
 
@@ -25,10 +32,13 @@ public class Dialogue : MonoBehaviour
         
     }
 
-    public void Appear()
+    public void SetText()
     {
-        animator.SetTrigger("appear");
-    }
+        foreach (TextMeshProUGUI textObj in textUI)
+        {
+            textObj.text = text;
+        }
+    } 
 
     public void Dissapear()
     {
