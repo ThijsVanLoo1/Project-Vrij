@@ -35,7 +35,7 @@ public class CreatePlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Platform") && unlockedPlatform && !pauseGame.isPaused)
+        if (Input.GetKey(KeyCode.Mouse1) && unlockedPlatform && !pauseGame.isPaused)
         {
             buildMode = true;
             spawnPoint.gameObject.SetActive(true);

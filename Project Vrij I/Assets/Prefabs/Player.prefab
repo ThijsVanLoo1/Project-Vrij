@@ -1653,6 +1653,7 @@ GameObject:
   - component: {fileID: 4554816255127161031}
   - component: {fileID: 4554816255127161051}
   - component: {fileID: 263231936453208925}
+  - component: {fileID: 755003454}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1752,7 +1753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a8dd366ec06f14cbcb06bce7b0b0cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyInput: 324
+  keyInput: 323
   spawnPoint: {fileID: 4554816254677178206}
   wallLayer:
     serializedVersion: 2
@@ -1968,6 +1969,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!81 &755003454
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4554816255127161030}
+  m_Enabled: 0
 --- !u!1 &4554816255243884813
 GameObject:
   m_ObjectHideFlags: 0

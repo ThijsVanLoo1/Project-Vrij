@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class HideCursor : MonoBehaviour
 {
+    public bool showCursor = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        if (!showCursor)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            ShowCursor();
+        }
     }
 
     // Update is called once per frame
